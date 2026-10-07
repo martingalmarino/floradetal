@@ -1,8 +1,7 @@
-# Patio Verde
+# Flora de Tal
 
 MVP de un sitio de jardinería hogareña para Argentina: ayuda a elegir plantas según el espacio, la luz y el tiempo
-disponible, y a planificar cuidados simples. "Patio Verde" es un nombre de trabajo editable (no es una marca ni un
-dominio registrado).
+disponible, y a planificar cuidados simples. El nombre se define en `SITE_NAME` (`src/lib/site.ts`).
 
 > **Alcance del contenido.** Las 40 fichas, el calendario y las reglas de cuidado son una **referencia inicial**
 > compilada el 6 de octubre de 2026 a partir de las fuentes de `src/data/sources.json`. No tienen revisión

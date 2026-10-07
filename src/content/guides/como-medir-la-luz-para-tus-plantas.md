@@ -1,6 +1,6 @@
 ---
 title: Cómo medir la luz que reciben tus plantas
-seoTitle: 'Cómo medir la luz para tus plantas | Patio Verde'
+seoTitle: 'Cómo medir la luz para tus plantas | Flora de Tal'
 description: Aprendé a distinguir sol directo, luz indirecta y oscuridad, y a observar cuántas horas de sol recibe el lugar donde vas a poner tus plantas.
 order: 1
 sourceIds: [NC_CONTAINERS, NC_POTUS, NC_LECHUGA]

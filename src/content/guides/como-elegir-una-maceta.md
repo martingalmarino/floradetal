@@ -1,6 +1,6 @@
 ---
 title: Cómo elegir una maceta y calcular el sustrato
-seoTitle: 'Cómo elegir una maceta y calcular sustrato | Patio Verde'
+seoTitle: 'Cómo elegir una maceta y calcular sustrato | Flora de Tal'
 description: Volumen útil, espacio para las raíces, drenaje y crecimiento futuro. Además, cómo medir tu maceta para calcular los litros de sustrato.
 order: 3
 sourceIds: [NC_CONTAINERS]

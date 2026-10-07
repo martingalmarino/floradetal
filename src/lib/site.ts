@@ -1,5 +1,4 @@
-// "Patio Verde" is an editable working name, not a registered brand or a reserved domain.
-export const SITE_NAME = 'Patio Verde';
+export const SITE_NAME = 'Flora de Tal';
 export const SITE_PROMISE = 'Encontrá plantas para tu espacio y aprendé a cuidarlas.';
 export const SITE_SUPPORT =
   'Contanos cómo es tu balcón, patio o jardín. Te ayudamos a elegir plantas según la luz, el espacio y el tiempo que tenés.';

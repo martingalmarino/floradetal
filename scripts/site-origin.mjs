@@ -39,10 +39,10 @@ export function resolveSiteOrigin(env) {
   const result = validateSiteOrigin(env.SITE_URL);
   if (result.ok) return result.origin;
   if (requireOrigin) {
-    throw new Error(`[patio-verde] Build de producción bloqueado: ${result.reason}`);
+    throw new Error(`[flora-de-tal] Build de producción bloqueado: ${result.reason}`);
   }
   if (env.SITE_URL) {
-    console.warn(`[patio-verde] SITE_URL ignorado: ${result.reason}`);
+    console.warn(`[flora-de-tal] SITE_URL ignorado: ${result.reason}`);
   }
   return undefined;
 }

@@ -1,9 +1,9 @@
 {
-  "name": "patio-verde",
+  "name": "flora-de-tal",
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "description": "Patio Verde — MVP de jardinería para Argentina (sitio estático Astro).",
+  "description": "Flora de Tal — MVP de jardinería para Argentina (sitio estático Astro).",
   "engines": {
     "node": ">=22.12.0"
   },

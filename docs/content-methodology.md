@@ -1,6 +1,6 @@
 # Metodología de contenido
 
-Este documento describe de dónde sale el contenido de Patio Verde, qué supuestos tiene y cómo ampliarlo sin perder
+Este documento describe de dónde sale el contenido de Flora de Tal, qué supuestos tiene y cómo ampliarlo sin perder
 trazabilidad. La versión pública resumida está en `/metodologia-y-fuentes/`.
 
 ## Estado actual

@@ -1,6 +1,6 @@
 ---
 title: Cómo saber si una planta necesita riego
-seoTitle: 'Cómo saber si una planta necesita riego | Patio Verde'
+seoTitle: 'Cómo saber si una planta necesita riego | Flora de Tal'
 description: Por qué no conviene regar con un calendario fijo, cómo revisar el sustrato y en qué se diferencian una menta, un romero y una zamioculca.
 order: 2
 sourceIds: [NC_MENTA, INTA_ROMERO, NC_ZAMIO, NC_CONTAINERS]
