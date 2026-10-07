@@ -1,0 +1,345 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { SITE_NAME, SITE_PROMISE, SITE_SUPPORT } from '../lib/site';
+import { plants } from '../lib/data';
+import { CATEGORY_LABEL } from '../lib/labels';
+import { categoryIllustration } from '../lib/illustrations';
+import { CATEGORIES } from '../lib/schemas';
+
+const site = Astro.site;
+const jsonLd = site
+  ? [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: SITE_NAME,
+        url: new URL('/', site).href,
+        inLanguage: 'es-AR',
+        description: SITE_PROMISE,
+      },
+    ]
+  : [];
+
+const CATEGORY_COPY: Record<(typeof CATEGORIES)[number], string> = {
+  huerta: 'Hortalizas para cosechar en maceta, cantero o jardín.',
+  aromatica: 'Hierbas para la cocina, con sus necesidades de sol y riego.',
+  flores: 'Color para balcones, borduras y patios.',
+  interior: 'Follaje para ambientes con distinta luz natural.',
+};
+
+const counts = Object.fromEntries(CATEGORIES.map((c) => [c, plants.filter((p) => p.category === c).length]));
+---
+
+<BaseLayout
+  title="Patio Verde: plantas y jardinería en Argentina"
+  description="Elegí plantas según la luz, el espacio y el tiempo que tenés. Fichas de cuidado, calendario orientativo y calculadora de sustrato."
+  jsonLd={jsonLd}
+>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Jardinería hogareña en Argentina</p>
+        <h1>{SITE_PROMISE}</h1>
+        <p class="lead">{SITE_SUPPORT}</p>
+        <div class="btn-row">
+          <a class="btn btn--accent" href="/encontra-tu-planta/">
+            Encontrar mis plantas
+            <Icon name="arrow-right" size={18} />
+          </a>
+          <a class="btn btn--secondary" href="/plantas/">Ver todas las plantas</a>
+        </div>
+        <p class="small muted hero__note">Sin registrarte. Tus respuestas y tu jardín se guardan solo en este dispositivo.</p>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="hero__tile hero__tile--a" set:html={categoryIllustration('interior', '')} />
+        <div class="hero__tile hero__tile--b" set:html={categoryIllustration('flores', '')} />
+        <div class="hero__tile hero__tile--c" set:html={categoryIllustration('aromatica', '')} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="como-funciona">
+    <div class="container">
+      <h2 id="como-funciona">Cómo funciona</h2>
+      <ol class="steps grid grid--3">
+        <li class="card">
+          <span class="steps__num" aria-hidden="true">1</span>
+          <h3>Contanos cómo es tu espacio</h3>
+          <p>Interior, balcón, patio o jardín; en maceta o en suelo; chico, mediano o grande.</p>
+        </li>
+        <li class="card">
+          <span class="steps__num" aria-hidden="true">2</span>
+          <h3>Indicá la luz y tu tiempo</h3>
+          <p>Las horas de sol directo que observás, si hay viento o heladas, y cuánto tiempo querés dedicarle.</p>
+        </li>
+        <li class="card">
+          <span class="steps__num" aria-hidden="true">3</span>
+          <h3>Recibí opciones con motivos</h3>
+          <p>Cada planta sugerida explica por qué se adapta y qué condiciones tenés que tener en cuenta.</p>
+        </li>
+      </ol>
+      <p><a class="btn btn--primary" href="/encontra-tu-planta/">Encontrar mis plantas</a></p>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="categorias">
+    <div class="container">
+      <h2 id="categorias">Explorá por categoría</h2>
+      <p class="lead">Una selección inicial de {plants.length} plantas comunes, con fichas de cuidado y fuentes.</p>
+      <ul class="grid grid--4 category-list">
+        {
+          CATEGORIES.map((category) => (
+            <li>
+              <a class="category-card" href={`/plantas/?categoria=${category}`}>
+                <span class="category-card__art" set:html={categoryIllustration(category, '')} aria-hidden="true" />
+                <span class="category-card__body">
+                  <span class="category-card__title">{CATEGORY_LABEL[category]}</span>
+                  <span class="small muted">{CATEGORY_COPY[category]}</span>
+                  <span class="small category-card__count">{counts[category]} fichas</span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="herramientas">
+    <div class="container grid grid--2">
+      <article class="card tool-card">
+        <span class="tool-card__icon" aria-hidden="true"><Icon name="calendar" size={26} /></span>
+        <h2 id="herramientas" class="tool-card__title">Calendario orientativo para clima templado</h2>
+        <p>
+          Ventanas de siembra y trasplante de referencia para la huerta, separadas de las revisiones de cuidado que sirven en
+          cualquier mes. Las fechas cambian según la localidad, las heladas y la variedad.
+        </p>
+        <p class="small" data-home-calendar hidden></p>
+        <a class="btn btn--secondary" href="/calendario/">Ver el calendario</a>
+      </article>
+      <article class="card tool-card">
+        <span class="tool-card__icon" aria-hidden="true"><Icon name="calculator" size={26} /></span>
+        <h2 class="tool-card__title">¿Cuánto sustrato necesitás?</h2>
+        <p>
+          Medí el interior de tu maceta o jardinera y calculá los litros aproximados, descontando el pan de raíces, y cuántas
+          bolsas comprar.
+        </p>
+        <a class="btn btn--secondary" href="/calculadora-de-sustrato/">Calcular litros</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section--tight" aria-labelledby="aprender">
+    <div class="container">
+      <h2 id="aprender">Aprendé lo básico</h2>
+      <ul class="grid grid--3 guide-list">
+        <li><a class="card guide-link" href="/guias/como-medir-la-luz-para-tus-plantas/"><Icon name="sun" />Cómo medir la luz que reciben tus plantas</a></li>
+        <li><a class="card guide-link" href="/guias/como-saber-si-una-planta-necesita-riego/"><Icon name="droplet" />Cómo saber si una planta necesita riego</a></li>
+        <li><a class="card guide-link" href="/guias/como-elegir-una-maceta/"><Icon name="pot" />Cómo elegir una maceta y calcular el sustrato</a></li>
+      </ul>
+      <p class="small muted">
+        ¿De dónde sale esta información? Leé nuestra <a href="/metodologia-y-fuentes/">metodología y fuentes</a>.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { getBrowserStore, STORAGE_KEYS } from '../lib/storage';
+  import localities from '../data/localities.json';
+  import calendar from '../data/calendar.json';
+  import { currentPlanningPeriod, rulesForMonth } from '../lib/calendar';
+  import { monthName } from '../lib/labels';
+  import type { CalendarRule } from '../lib/schemas';
+
+  // Only personalise after the user has chosen a locality routed to the temperate reference.
+  const target = document.querySelector<HTMLElement>('[data-home-calendar]');
+  const profile = getBrowserStore().read(
+    STORAGE_KEYS.profile,
+    (v): v is { localityId?: string } => typeof v === 'object' && v !== null,
+    {},
+  );
+  const locality = localities.find((l) => l.id === profile.localityId);
+  if (target && locality && locality.coverage === 'reference_temperate') {
+    const { month } = currentPlanningPeriod();
+    const count = rulesForMonth(calendar.rules as CalendarRule[], { month }).length;
+    target.textContent =
+      count > 0
+        ? `Elegiste ${locality.label}. En ${monthName(month)}, la referencia templada tiene ${count} ${count === 1 ? 'tarea' : 'tareas'} de huerta para revisar.`
+        : `Elegiste ${locality.label}. En ${monthName(month)} la referencia templada no tiene tareas de siembra cargadas.`;
+    target.hidden = false;
+  }
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-6) var(--space-7);
+  }
+
+  .hero__grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+
+  @media (min-width: 900px) {
+    .hero__grid {
+      grid-template-columns: 1.15fr 1fr;
+    }
+  }
+
+  .hero h1 {
+    max-width: 16ch;
+  }
+
+  .hero__note {
+    margin-top: var(--space-4);
+  }
+
+  .hero__art {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .hero__tile {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid #cad8c1;
+    aspect-ratio: 16 / 10;
+  }
+
+  .hero__tile :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .hero__tile--a {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 7;
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-5) 0;
+    counter-reset: none;
+  }
+
+  .steps__num {
+    display: grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 50%;
+    background: var(--color-sage);
+    color: var(--color-forest);
+    font-weight: 800;
+    margin-bottom: var(--space-3);
+  }
+
+  .steps p {
+    margin: 0;
+  }
+
+  .category-list,
+  .guide-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-5) 0 0;
+  }
+
+  .category-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: var(--shadow-sm);
+    transition: border-color 0.15s ease;
+  }
+
+  .category-card:hover {
+    border-color: var(--color-forest);
+    color: inherit;
+  }
+
+  .category-card__art {
+    display: block;
+    aspect-ratio: 16 / 9;
+  }
+
+  .category-card__art :global(svg) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .category-card__body {
+    display: grid;
+    gap: var(--space-1);
+    padding: var(--space-4);
+  }
+
+  .category-card__title {
+    font-family: var(--font-serif);
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-forest);
+  }
+
+  .category-card__count {
+    color: var(--color-terracotta-text);
+    font-weight: 650;
+  }
+
+  .tool-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tool-card .btn {
+    margin-top: auto;
+  }
+
+  .tool-card__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-sage-200);
+    color: var(--color-forest);
+    margin-bottom: var(--space-3);
+  }
+
+  .tool-card__title {
+    font-size: var(--text-xl);
+  }
+
+  .guide-link {
+    display: flex;
+    gap: var(--space-3);
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    font-weight: 650;
+    color: var(--color-forest);
+  }
+
+  .guide-link:hover {
+    border-color: var(--color-forest);
+  }
+
+  .guide-link :global(svg) {
+    flex-shrink: 0;
+    color: var(--color-terracotta-text);
+  }
+</style>

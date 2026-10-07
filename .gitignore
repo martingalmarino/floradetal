@@ -1,0 +1,22 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+
+# environment
+.env
+.env.*
+!.env.example
+
+# test artifacts
+test-results/
+playwright-report/
+.vercel/
+
+# os
+.DS_Store

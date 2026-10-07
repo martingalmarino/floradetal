@@ -1,0 +1,50 @@
+[
+  {
+    "id": "agua-humedad-pareja",
+    "label": "Humedad del sustrato",
+    "text": "Revisá la humedad del sustrato. Si sigue húmedo, esperá antes de volver a regar.",
+    "appliesTo": { "waterProfile": "even_moisture" },
+    "sourceMode": "plant",
+    "sourceIds": []
+  },
+  {
+    "id": "agua-secado-parcial",
+    "label": "Secado parcial",
+    "text": "Comprobá que el sustrato haya perdido parte de la humedad antes del próximo riego.",
+    "appliesTo": { "waterProfile": "partial_dry" },
+    "sourceMode": "plant",
+    "sourceIds": []
+  },
+  {
+    "id": "agua-secado-amplio",
+    "label": "Secado amplio",
+    "text": "Dejá secar bien el sustrato y comprobalo antes de regar, especialmente con frío o poco crecimiento.",
+    "appliesTo": { "waterProfile": "substantial_dry" },
+    "sourceMode": "plant",
+    "sourceIds": []
+  },
+  {
+    "id": "follaje-interior",
+    "label": "Hojas y brotes",
+    "text": "Observá hojas y brotes; revisá la luz y el drenaje si notás cambios.",
+    "appliesTo": { "category": "interior" },
+    "sourceMode": "plant",
+    "sourceIds": []
+  },
+  {
+    "id": "plantines-huerta",
+    "label": "Plantines antes del trasplante",
+    "text": "Controlá la luz, la humedad y el espacio disponible antes de trasplantar.",
+    "appliesTo": { "hasTransplantRule": true },
+    "sourceMode": "plant",
+    "sourceIds": []
+  },
+  {
+    "id": "drenaje-maceta",
+    "label": "Drenaje en maceta",
+    "text": "Revisá que los orificios drenen y que no quede agua acumulada.",
+    "appliesTo": { "inContainer": true },
+    "sourceMode": "fixed",
+    "sourceIds": ["NC_CONTAINERS"]
+  }
+]

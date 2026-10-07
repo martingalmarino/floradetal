@@ -1,0 +1,313 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const fields = [
+  { name: 'diameter', label: 'Diámetro interno', unit: 'cm', shapes: ['cylinder'], hint: 'Medido por dentro, de borde a borde.' },
+  { name: 'length', label: 'Largo interno', unit: 'cm', shapes: ['rectangle'], hint: null },
+  { name: 'width', label: 'Ancho interno', unit: 'cm', shapes: ['rectangle'], hint: null },
+  {
+    name: 'upperDiameter',
+    label: 'Diámetro en la línea de llenado',
+    unit: 'cm',
+    shapes: ['cone'],
+    hint: 'Medilo a la altura hasta donde vas a llenar, no en el borde superior.',
+  },
+  { name: 'bottomDiameter', label: 'Diámetro de la base', unit: 'cm', shapes: ['cone'], hint: 'Medido por dentro, en el fondo.' },
+  {
+    name: 'fillHeight',
+    label: 'Altura de llenado',
+    unit: 'cm',
+    shapes: ['cylinder', 'rectangle', 'cone'],
+    hint: 'Desde el fondo hasta donde vas a poner sustrato. En un cantero, solo la capa que vas a agregar.',
+  },
+] as const;
+---
+
+<BaseLayout
+  title="Calculadora de sustrato para macetas | Patio Verde"
+  description="Calculá cuántos litros de sustrato necesitás para macetas redondas, cónicas o jardineras, descontando el pan de raíces, y cuántas bolsas comprar."
+>
+  <div class="container">
+    <header class="page-header">
+      <p class="eyebrow">Herramienta</p>
+      <h1>Calculadora de sustrato</h1>
+      <p class="lead">Medí el interior de tu maceta, jardinera o cantero y estimá los litros de sustrato y las bolsas a comprar.</p>
+    </header>
+
+    <div class="calc">
+      <form class="card calc__form" data-calc novalidate aria-describedby="calc-intro">
+        <p id="calc-intro" class="small muted">
+          Usá medidas internas en centímetros. Podés escribir decimales con coma o con punto: 12,5 o 12.5.
+        </p>
+
+        <fieldset class="field">
+          <legend>Forma del recipiente</legend>
+          <div class="choices">
+            <label class="choice" for="shape-cylinder">
+              <input type="radio" id="shape-cylinder" name="shape" value="cylinder" checked />
+              <span class="choice__text">
+                <span class="choice__title">Maceta redonda recta</span>
+                <span class="choice__desc">El mismo diámetro arriba y abajo (cilindro)</span>
+              </span>
+            </label>
+            <label class="choice" for="shape-rectangle">
+              <input type="radio" id="shape-rectangle" name="shape" value="rectangle" />
+              <span class="choice__text">
+                <span class="choice__title">Jardinera o cantero rectangular</span>
+                <span class="choice__desc">También sirve para la capa que agregás a un cantero</span>
+              </span>
+            </label>
+            <label class="choice" for="shape-cone">
+              <input type="radio" id="shape-cone" name="shape" value="cone" />
+              <span class="choice__text">
+                <span class="choice__title">Maceta redonda que se angosta hacia abajo</span>
+                <span class="choice__desc">Más ancha arriba que en la base (cono truncado)</span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="calc__fields">
+          {
+            fields.map((field) => (
+              <div class="field" data-field={field.name} data-shapes={field.shapes.join(' ')}>
+                <label for={`calc-${field.name}`}>
+                  {field.label} <span class="muted">({field.unit})</span>
+                </label>
+                <input
+                  type="text"
+                  inputmode="decimal"
+                  autocomplete="off"
+                  id={`calc-${field.name}`}
+                  name={field.name}
+                  aria-describedby={`${field.hint ? `calc-${field.name}-hint ` : ''}calc-${field.name}-error`}
+                />
+                {field.hint && (
+                  <p class="hint" id={`calc-${field.name}-hint`}>
+                    {field.hint}
+                  </p>
+                )}
+                <p class="field-error" id={`calc-${field.name}-error`} data-error-for={field.name} hidden />
+              </div>
+            ))
+          }
+        </div>
+
+        <details class="calc__more" open>
+          <summary>Opciones</summary>
+          <div class="calc__fields">
+            <div class="field">
+              <label for="calc-occupied">Volumen del pan de raíces <span class="muted">(L, opcional)</span></label>
+              <input type="text" inputmode="decimal" id="calc-occupied" name="occupied" value="0" aria-describedby="calc-occupied-hint calc-occupied-error" />
+              <p class="hint" id="calc-occupied-hint">Si vas a trasplantar, el espacio que ya ocupan las raíces con su tierra.</p>
+              <p class="field-error" id="calc-occupied-error" data-error-for="occupied" hidden></p>
+            </div>
+            <div class="field">
+              <label for="calc-quantity">Cantidad de recipientes iguales</label>
+              <input type="text" inputmode="numeric" id="calc-quantity" name="quantity" value="1" aria-describedby="calc-quantity-error" />
+              <p class="field-error" id="calc-quantity-error" data-error-for="quantity" hidden></p>
+            </div>
+            <div class="field">
+              <label for="calc-allowance">Margen de compra <span class="muted">(%, opcional)</span></label>
+              <input type="text" inputmode="decimal" id="calc-allowance" name="allowance" value="0" aria-describedby="calc-allowance-hint calc-allowance-error" />
+              <p class="hint" id="calc-allowance-hint">
+                Por ejemplo, 10 % para cubrir el asentamiento.
+                <button type="button" class="link-button" data-allowance-10>Usar 10 %</button>
+              </p>
+              <p class="field-error" id="calc-allowance-error" data-error-for="allowance" hidden></p>
+            </div>
+            <div class="field">
+              <label for="calc-bagSize">Tamaño de la bolsa <span class="muted">(L)</span></label>
+              <input type="text" inputmode="decimal" id="calc-bagSize" name="bagSize" value="20" aria-describedby="calc-bagSize-error" />
+              <p class="field-error" id="calc-bagSize-error" data-error-for="bagSize" hidden></p>
+            </div>
+          </div>
+        </details>
+
+        <p class="field-error" data-error-summary role="alert" hidden></p>
+        <button type="submit" class="btn btn--accent calc__submit">
+          <Icon name="calculator" size={18} />
+          Calcular litros
+        </button>
+      </form>
+
+      <div class="calc__side">
+        <figure class="card calc__diagram" aria-labelledby="diagram-caption">
+          <div data-diagram="cylinder"><svg viewBox="0 0 240 210" role="img" aria-labelledby="dia-cyl-title" width="240" height="210">
+            <title id="dia-cyl-title">Maceta cilíndrica: diámetro interno y altura de llenado</title>
+            <ellipse cx="110" cy="34" rx="70" ry="14" fill="#f7f5ef" stroke="#183d32" stroke-width="2"></ellipse>
+            <path d="M40 34v146a70 14 0 0 0 140 0V34" fill="#f7f5ef" stroke="#183d32" stroke-width="2"></path>
+            <path d="M40 84v96a70 14 0 0 0 140 0V84a70 14 0 0 1-140 0z" fill="#c9b79c"></path>
+            <ellipse cx="110" cy="84" rx="70" ry="14" fill="none" stroke="#af573c" stroke-width="2" stroke-dasharray="6 4"></ellipse>
+            <path d="M44 128h132" stroke="#183d32" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"></path>
+            <text x="110" y="122" text-anchor="middle" font-size="12" fill="#183d32">diámetro interno</text>
+            <path d="M200 84v110" stroke="#183d32" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"></path>
+            <text x="206" y="139" font-size="12" fill="#183d32" transform="rotate(90 206 139)" text-anchor="middle">altura de llenado</text>
+            <text x="110" y="64" text-anchor="middle" font-size="11" fill="#8e432c">línea de llenado</text>
+            <defs><marker id="a" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#183d32"></path></marker></defs>
+          </svg></div>
+          <div data-diagram="rectangle" hidden><svg viewBox="0 0 240 200" role="img" aria-labelledby="dia-rect-title" width="240" height="200">
+            <title id="dia-rect-title">Jardinera rectangular: largo, ancho y altura de llenado</title>
+            <path d="M30 60l40-24h150l-40 24z" fill="#f7f5ef" stroke="#183d32" stroke-width="2"></path>
+            <path d="M30 60h150v110H30z" fill="#f7f5ef" stroke="#183d32" stroke-width="2"></path>
+            <path d="M180 60l40-24v110l-40 24z" fill="#efece3" stroke="#183d32" stroke-width="2"></path>
+            <path d="M30 88h150v82H30z" fill="#c9b79c"></path>
+            <path d="M180 88l40-24v82l-40 24z" fill="#b8a283"></path>
+            <path d="M30 88h150l40-24" fill="none" stroke="#af573c" stroke-width="2" stroke-dasharray="6 4"></path>
+            <path d="M30 184h150" stroke="#183d32" stroke-width="1.5" marker-start="url(#b)" marker-end="url(#b)"></path>
+            <text x="105" y="198" text-anchor="middle" font-size="12" fill="#183d32">largo interno</text>
+            <path d="M190 172l34-20" stroke="#183d32" stroke-width="1.5" marker-start="url(#b)" marker-end="url(#b)"></path>
+            <text x="214" y="178" font-size="12" fill="#183d32">ancho</text>
+            <path d="M18 88v82" stroke="#183d32" stroke-width="1.5" marker-start="url(#b)" marker-end="url(#b)"></path>
+            <text x="12" y="129" font-size="12" fill="#183d32" transform="rotate(-90 12 129)" text-anchor="middle">altura de llenado</text>
+            <text x="105" y="80" text-anchor="middle" font-size="11" fill="#8e432c">línea de llenado</text>
+            <defs><marker id="b" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#183d32"></path></marker></defs>
+          </svg></div>
+          <div data-diagram="cone" hidden><svg viewBox="0 0 240 200" role="img" aria-labelledby="dia-cone-title" width="240" height="200">
+            <title id="dia-cone-title">Maceta cónica: diámetro en la línea de llenado, diámetro de la base y altura de llenado</title>
+            <path d="M30 34h160l-30 136H60z" fill="#f7f5ef" stroke="#183d32" stroke-width="2"></path>
+            <path d="M38.8 74h142.4L160 170H60z" fill="#c9b79c"></path>
+            <path d="M38.8 74h142.4" stroke="#af573c" stroke-width="2" stroke-dasharray="6 4"></path>
+            <path d="M42 90h136" stroke="#183d32" stroke-width="1.5" marker-start="url(#c)" marker-end="url(#c)"></path>
+            <text x="110" y="106" text-anchor="middle" font-size="11" fill="#183d32">diámetro en la línea</text>
+            <path d="M62 184h96" stroke="#183d32" stroke-width="1.5" marker-start="url(#c)" marker-end="url(#c)"></path>
+            <text x="110" y="198" text-anchor="middle" font-size="12" fill="#183d32">diámetro de la base</text>
+            <path d="M208 74v96" stroke="#183d32" stroke-width="1.5" marker-start="url(#c)" marker-end="url(#c)"></path>
+            <text x="216" y="122" font-size="12" fill="#183d32" transform="rotate(90 216 122)" text-anchor="middle">altura de llenado</text>
+            <text x="110" y="66" text-anchor="middle" font-size="11" fill="#8e432c">línea de llenado</text>
+            <text x="110" y="28" text-anchor="middle" font-size="10" fill="#4c5a52">borde (no usar si llenás menos)</text>
+            <defs><marker id="c" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#183d32"></path></marker></defs>
+          </svg></div>
+          <figcaption id="diagram-caption" class="small muted">
+            La línea punteada marca hasta dónde vas a llenar. Todas las medidas son internas.
+          </figcaption>
+        </figure>
+
+        <section class="card calc__results" aria-labelledby="results-heading">
+          <h2 id="results-heading" class="calc__results-title">Resultado</h2>
+          <div aria-live="polite" data-results>
+            <p class="muted small">Completá las medidas y tocá “Calcular litros”.</p>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="section--tight prose" aria-labelledby="supuestos">
+      <h2 id="supuestos">Cómo se calcula y qué tener en cuenta</h2>
+      <ul>
+        <li>
+          <strong>Volumen aproximado</strong>: la capacidad geométrica hasta la línea de llenado, con medidas internas. Para la
+          maceta cónica usamos el diámetro a la altura de llenado, no el del borde.
+        </li>
+        <li><strong>Sustrato nuevo estimado</strong>: el volumen menos el pan de raíces, multiplicado por la cantidad de recipientes.</li>
+        <li>
+          <strong>Compra orientativa</strong>: el sustrato estimado más el margen que elijas, y las bolsas redondeadas hacia
+          arriba según su tamaño.
+        </li>
+        <li>
+          El pan de raíces, las formas irregulares y el asentamiento del sustrato con el riego cambian lo que realmente vas a
+          usar.
+        </li>
+        <li>
+          No recomendamos una capa universal de piedras en el fondo: lo que asegura el drenaje son los orificios. Ver
+          <a href="/guias/como-elegir-una-maceta/">cómo elegir una maceta</a>.
+        </li>
+        <li>
+          Esta herramienta no indica qué mezcla de sustrato usar, cuánto regar ni cuánto peso soporta un balcón.
+        </li>
+      </ul>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import '../scripts/calculator-page';
+</script>
+
+<style>
+  .calc {
+    display: grid;
+    gap: var(--space-5);
+    align-items: start;
+  }
+
+  @media (min-width: 920px) {
+    .calc {
+      grid-template-columns: 1.1fr 1fr;
+    }
+    .calc__side {
+      position: sticky;
+      top: 5.5rem;
+    }
+  }
+
+  .calc__form {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  .calc__fields {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 560px) {
+    .calc__fields {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .calc__more summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-forest);
+    min-height: var(--tap);
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--space-3);
+  }
+
+  .calc__submit {
+    justify-self: start;
+  }
+
+  .calc__side {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .calc__diagram {
+    margin: 0;
+    display: grid;
+    justify-items: center;
+    gap: var(--space-2);
+  }
+
+  .calc__diagram [data-diagram] {
+    width: 100%;
+    display: grid;
+    justify-items: center;
+  }
+
+  .calc__diagram svg {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .calc__results-title {
+    font-size: var(--text-xl);
+  }
+
+  .link-button {
+    background: none;
+    border: 0;
+    padding: 0 0.2rem;
+    min-height: 32px;
+    font: inherit;
+    color: var(--color-forest);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+</style>

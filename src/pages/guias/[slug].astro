@@ -1,0 +1,105 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PlantCard from '../../components/PlantCard.astro';
+import SourceLinks from '../../components/SourceLinks.astro';
+import { getPlantById } from '../../lib/data';
+import { SITE_NAME } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const guides = await getCollection('guides');
+  return guides.map((guide) => ({ params: { slug: guide.id }, props: { guide } }));
+}
+
+interface Props {
+  guide: CollectionEntry<'guides'>;
+}
+
+const { guide } = Astro.props;
+const { Content } = await render(guide);
+const path = `/guias/${guide.id}/`;
+const related = guide.data.relatedPlantIds.map(getPlantById);
+const allGuides = (await getCollection('guides')).sort((a, b) => a.data.order - b.data.order);
+const others = allGuides.filter((g) => g.id !== guide.id);
+const crumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Guías', path: '/guias/' },
+  { name: guide.data.title, path },
+];
+---
+
+<BaseLayout title={guide.data.seoTitle} description={guide.data.description} ogType="article" breadcrumbs={crumbs}>
+  <article class="container guide">
+    <Breadcrumbs items={crumbs} />
+    <header class="page-header guide__header">
+      <p class="eyebrow">Guía práctica</p>
+      <h1>{guide.data.title}</h1>
+      <p class="lead">{guide.data.description}</p>
+    </header>
+    <div class="prose guide__body">
+      <Content />
+    </div>
+
+    <section class="guide__section" aria-labelledby="fuentes">
+      <h2 id="fuentes">Fuentes</h2>
+      <SourceLinks ids={guide.data.sourceIds} />
+      <p class="small muted">
+        Texto original de {SITE_NAME}, basado en las fuentes indicadas. Las referencias extranjeras se usan para
+        características generales, no para fechas o zonas de la Argentina.
+      </p>
+    </section>
+
+    {
+      related.length > 0 && (
+        <section class="guide__section" aria-labelledby="plantas-guia">
+          <h2 id="plantas-guia">Plantas mencionadas</h2>
+          <ul class="grid grid--3 guide__plants">
+            {related.map((plant) => (
+              <li>
+                <PlantCard plant={plant} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <nav class="guide__section" aria-label="Otras guías">
+      <h2>Otras guías</h2>
+      <ul>
+        {others.map((g) => <li><a href={`/guias/${g.id}/`}>{g.data.title}</a></li>)}
+      </ul>
+    </nav>
+  </article>
+</BaseLayout>
+
+<style>
+  .guide {
+    padding-top: var(--space-5);
+  }
+
+  .guide__header {
+    padding-top: 0;
+  }
+
+  .guide__body :global(ol),
+  .guide__body :global(ul) {
+    padding-left: 1.4rem;
+  }
+
+  .guide__section {
+    margin-top: var(--space-7);
+    max-width: var(--content-max);
+  }
+
+  .guide__section h2 {
+    font-size: var(--text-xl);
+  }
+
+  .guide__plants {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+  }
+</style>

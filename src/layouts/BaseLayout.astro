@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { SITE_NAME } from '../lib/site';
+
+export interface Crumb {
+  name: string;
+  path: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  /** Personal or ephemeral pages must not be indexed. */
+  noindex?: boolean;
+  breadcrumbs?: Crumb[];
+  ogType?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>[];
+}
+
+const { title, description, noindex = false, breadcrumbs, ogType = 'website', jsonLd = [] } = Astro.props;
+
+const site = Astro.site;
+// Canonical is always the clean path: query parameters never create indexable duplicates.
+const canonical = site ? new URL(Astro.url.pathname, site).href : null;
+
+const structured: Record<string, unknown>[] = [...jsonLd];
+if (site && breadcrumbs && breadcrumbs.length > 0) {
+  structured.push({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: new URL(crumb.path, site).href,
+    })),
+  });
+}
+---
+
+<!doctype html>
+<html lang="es-AR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {canonical && !noindex && <link rel="canonical" href={canonical} />}
+    <meta name="theme-color" content="#183d32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:locale" content="es_AR" />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    {site && <meta property="og:image" content={new URL('/og-image.png', site).href} />}
+    {site && <meta property="og:image:width" content="1200" />}
+    {site && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content="summary_large_image" />
+    {site && <link rel="sitemap" href="/sitemap-index.xml" />}
+    {structured.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <SiteHeader />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <SiteFooter />
+    <div class="toast-region" id="toast-region" aria-live="polite" aria-atomic="false"></div>
+    <script>
+      import '../scripts/global';
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  .skip-link {
+    position: absolute;
+    left: var(--space-4);
+    top: -100px;
+    z-index: 100;
+    background: var(--color-forest);
+    color: #fff;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+  }
+
+  .skip-link:focus {
+    top: var(--space-3);
+    color: #fff;
+  }
+
+  main:focus {
+    outline: none;
+  }
+</style>

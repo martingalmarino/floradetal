@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PlantCard from '../../components/PlantCard.astro';
+import Icon from '../../components/Icon.astro';
+import { plants } from '../../lib/data';
+import { CATEGORY_LABEL, LIGHT_LABEL, MAINTENANCE_LABEL } from '../../lib/labels';
+import { CATEGORIES, LIGHT_PROFILES, MAINTENANCE_LEVELS } from '../../lib/schemas';
+import { compareSpanish } from '../../lib/text';
+
+const sorted = [...plants].sort((a, b) => compareSpanish(a.commonName, b.commonName));
+---
+
+<BaseLayout
+  title="Plantas para tu casa, balcón y jardín | Patio Verde"
+  description="Buscá entre 40 plantas de huerta, aromáticas, flores e interior. Filtrá por luz, cuidado y ambiente, y abrí su ficha de cuidados."
+>
+  <div class="container">
+    <header class="page-header">
+      <p class="eyebrow">Directorio</p>
+      <h1>Plantas</h1>
+      <p class="lead">
+        Buscá por nombre común, nombre científico u otros nombres, y filtrá según la luz, el cuidado y el ambiente.
+      </p>
+    </header>
+
+    <form class="filters card no-print" role="search" aria-label="Buscar y filtrar plantas" data-filters>
+      <div class="field filters__search">
+        <label for="q">Buscar</label>
+        <div class="search-input">
+          <Icon name="search" size={18} />
+          <input id="q" name="q" type="search" autocomplete="off" placeholder="Ej.: rúcula, pothos, Salvia rosmarinus" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="categoria">Categoría</label>
+        <select id="categoria" name="categoria">
+          <option value="">Todas</option>
+          {CATEGORIES.map((c) => <option value={c}>{CATEGORY_LABEL[c]}</option>)}
+        </select>
+      </div>
+      <div class="field">
+        <label for="luz">Luz</label>
+        <select id="luz" name="luz">
+          <option value="">Cualquiera</option>
+          {LIGHT_PROFILES.map((l) => <option value={l}>{LIGHT_LABEL[l]}</option>)}
+        </select>
+      </div>
+      <div class="field">
+        <label for="cuidado">Cuidado</label>
+        <select id="cuidado" name="cuidado">
+          <option value="">Cualquiera</option>
+          {MAINTENANCE_LEVELS.map((m) => <option value={m}>{MAINTENANCE_LABEL[m]}</option>)}
+        </select>
+      </div>
+      <div class="field">
+        <label for="ambiente">Ambiente</label>
+        <select id="ambiente" name="ambiente">
+          <option value="">Todos</option>
+          <option value="exterior">Balcón, patio o jardín</option>
+          <option value="interior">Interior</option>
+        </select>
+      </div>
+      <div class="filters__actions">
+        <button type="reset" class="btn btn--ghost" data-clear>Limpiar filtros</button>
+      </div>
+    </form>
+
+    <p class="result-count" aria-live="polite" data-count>{sorted.length} plantas</p>
+
+    <ul class="grid grid--3 plant-grid" data-grid>
+      {
+        sorted.map((plant) => (
+          <li data-item={plant.id}>
+            <PlantCard plant={plant} headingLevel="h2" />
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="card card--sage empty" data-empty hidden>
+      <h2>No encontramos plantas con esa combinación</h2>
+      <p>
+        Probá con otro nombre o sacá algún filtro. Esta es una selección inicial de {plants.length} plantas, así que puede que
+        la que buscás todavía no esté.
+      </p>
+      <div class="btn-row">
+        <button type="button" class="btn btn--primary" data-clear>Limpiar filtros</button>
+        <a class="btn btn--secondary" href="/encontra-tu-planta/">Encontrar plantas para mi espacio</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { matchesQuery } from '../../lib/text';
+
+  const form = document.querySelector<HTMLFormElement>('[data-filters]')!;
+  const items = [...document.querySelectorAll<HTMLLIElement>('[data-item]')];
+  const count = document.querySelector<HTMLElement>('[data-count]')!;
+  const empty = document.querySelector<HTMLElement>('[data-empty]')!;
+  const grid = document.querySelector<HTMLElement>('[data-grid]')!;
+  const FIELDS = ['q', 'categoria', 'luz', 'cuidado', 'ambiente'] as const;
+
+  const control = (name: (typeof FIELDS)[number]) =>
+    form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement;
+
+  function readParams(): void {
+    const params = new URLSearchParams(window.location.search);
+    for (const name of FIELDS) {
+      const value = params.get(name);
+      if (value === null) continue;
+      const input = control(name);
+      if (input instanceof HTMLSelectElement && ![...input.options].some((o) => o.value === value)) continue;
+      input.value = value.slice(0, 80);
+    }
+  }
+
+  function writeParams(): void {
+    const params = new URLSearchParams();
+    for (const name of FIELDS) {
+      const value = control(name).value.trim();
+      if (value) params.set(name, value);
+    }
+    const query = params.toString();
+    history.replaceState(null, '', query ? `?${query}` : window.location.pathname);
+  }
+
+  function apply(): void {
+    const q = control('q').value;
+    const categoria = control('categoria').value;
+    const luz = control('luz').value;
+    const cuidado = control('cuidado').value;
+    const ambiente = control('ambiente').value;
+    let visible = 0;
+    for (const item of items) {
+      const card = item.querySelector<HTMLElement>('[data-plant-card]')!;
+      const d = card.dataset;
+      const show =
+        matchesQuery(d.search ?? '', q) &&
+        (!categoria || d.category === categoria) &&
+        (!luz || d.light === luz) &&
+        (!cuidado || d.maintenance === cuidado) &&
+        (!ambiente || (d.environment ?? '').split(' ').includes(ambiente));
+      item.hidden = !show;
+      if (show) visible++;
+    }
+    count.textContent = visible === 1 ? '1 planta' : `${visible} plantas`;
+    empty.hidden = visible > 0;
+    grid.hidden = visible === 0;
+    writeParams();
+  }
+
+  form.addEventListener('input', apply);
+  form.addEventListener('change', apply);
+  form.addEventListener('submit', (event) => event.preventDefault());
+  form.addEventListener('reset', () => window.setTimeout(apply, 0));
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-clear]')) {
+    if (button.type === 'reset') continue;
+    button.addEventListener('click', () => {
+      form.reset();
+      control('q').focus();
+    });
+  }
+
+  readParams();
+  apply();
+</script>
+
+<style>
+  .filters {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+    margin-bottom: var(--space-4);
+  }
+
+  @media (min-width: 360px) {
+    .filters {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-3);
+    }
+    .filters__search,
+    .filters__actions {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 1000px) {
+    .filters {
+      grid-template-columns: 2fr repeat(4, 1fr) auto;
+      align-items: end;
+    }
+    .filters__search,
+    .filters__actions {
+      grid-column: auto;
+    }
+  }
+
+  .search-input {
+    position: relative;
+  }
+
+  .search-input :global(svg) {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-muted);
+    pointer-events: none;
+  }
+
+  .search-input input {
+    padding-left: 2.4rem;
+  }
+
+  .filters__actions {
+    display: flex;
+    align-items: end;
+  }
+
+  .result-count {
+    font-weight: 700;
+    color: var(--color-forest);
+  }
+
+  .plant-grid {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .empty {
+    margin-top: var(--space-4);
+  }
+</style>

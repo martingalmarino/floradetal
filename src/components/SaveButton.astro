@@ -1,0 +1,23 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  plantId: string;
+  plantName: string;
+  small?: boolean;
+}
+
+const { plantId, plantName, small = false } = Astro.props;
+---
+
+<button
+  type="button"
+  class:list={['btn', 'btn--secondary', { 'btn--small': small }]}
+  data-save-plant={plantId}
+  data-plant-name={plantName}
+  data-saved="false"
+>
+  <Icon name="heart" size={18} />
+  <span data-save-label>Guardar en mi jardín</span>
+  <span class="visually-hidden">: {plantName}</span>
+</button>

@@ -1,0 +1,41 @@
+slug|commonName|scientificName|category|environment|light|water|frost|care|space|practicalNote|sources
+tomate|Tomate|Solanum lycopersicum|H|OUT|S|M|S|M|V|Elegí la variedad según el espacio; muchas necesitan tutor. Mantené el riego parejo y evitá trasplantar al exterior con riesgo de heladas.|NC_TOMATE
+morron|Morrón|Capsicum annuum (grupo de pimientos dulces)|H|OUT|S|M|S|M|M|Buscá un lugar cálido y luminoso. El fruto verde o maduro depende de la variedad y del momento de cosecha.|NC_MORRON
+lechuga|Lechuga|Lactuca sativa|H|OUT|SP|M|T|B|P|El calor y la falta de humedad pueden acelerar la floración. Elegí variedades adecuadas a la época.|NC_LECHUGA
+acelga|Acelga|Beta vulgaris (grupo Cicla)|H|OUT|SP|M|T|B|M|Podés cosechar hojas externas y conservar el centro de crecimiento. La época depende de la variedad y las temperaturas.|INTA_PLAN,INTA_OTONO
+rabanito|Rabanito|Raphanus raphanistrum subsp. sativus|H|OUT|SP|M|T|B|P|Sembrá directamente y evitá que las plantas queden amontonadas. Cosechá antes de que las raíces pierdan calidad.|NC_RABANITO
+zanahoria|Zanahoria|Daucus carota subsp. sativus|H|OUT|S|M|T|M|M|Necesita espacio para desarrollar la raíz y sustrato suelto. La siembra directa evita alterar la raíz principal.|NC_ZANAHORIA
+espinaca|Espinaca|Spinacia oleracea|H|OUT|SP|M|T|B|P|Es un cultivo de época fresca. El calor favorece la subida a flor y reduce la calidad de las hojas.|NC_ESPINACA
+rucula|Rúcula|Eruca vesicaria|H|OUT|SP|M|T|B|P|Cosechá hojas tiernas; el calor puede acelerar la floración. Diferenciá esta especie de otras rúculas comerciales.|NC_RUCULA
+arveja|Arveja|Pisum sativum (sin. Lathyrus oleraceus)|H|OUT|S|M|T|M|V|Elegí una variedad acorde al espacio. Las trepadoras necesitan soporte; el calor intenso limita el cultivo.|NC_ARVEJA
+ajo|Ajo|Allium sativum|H|OUT|S|D|T|B|P|Se inicia a partir de dientes. El desarrollo y la cosecha cambian con la variedad; evitá el encharcamiento.|NC_AJO
+chaucha|Chaucha|Phaseolus vulgaris|H|OUT|S|M|S|M|V|Hay variedades enanas y trepadoras. Las de rama necesitan tutor y espacio vertical; protegé el cultivo del frío.|NC_CHAUCHA
+remolacha|Remolacha|Beta vulgaris (grupo Conditiva)|H|OUT|S|M|T|B|P|Dejá lugar para que engrose la raíz. Consultá la variedad y el calendario antes de sembrar.|INTA_PLAN,INTA_OTONO
+albahaca|Albahaca|Ocimum basilicum|A|OUT|SP|M|S|B|P|Necesita condiciones cálidas. Podés cosechar brotes y retirar flores si priorizás la producción de hojas.|NC_ALBAHACA
+perejil|Perejil|Petroselinum crispum|A|OUT|SP|M|T|B|P|La germinación puede ser lenta. Cosechá hojas externas y mantené humedad sin encharcar.|NC_PEREJIL
+romero|Romero|Salvia rosmarinus|A|OUT|S|D|U|B|V|Priorizá un sustrato con buen drenaje. Es un arbusto: reservá espacio según la variedad y el tipo de cultivo.|INTA_ROMERO
+tomillo|Tomillo|Thymus vulgaris|A|OUT|S|D|T|B|P|Funciona mejor con sol y buen drenaje. Evitá sustrato permanentemente húmedo y conservá parte verde al recortar.|NC_TOMILLO
+oregano|Orégano|Origanum vulgare|A|OUT|S|D|T|B|M|Buscá sol y suelo drenante. Las variedades variegadas pueden agradecer protección del sol más intenso.|NC_OREGANO
+menta|Menta o hierbabuena|Mentha spicata|A|OUT|SP|M|T|B|M|Cultivala en un recipiente propio para limitar su expansión. No la manejes con el mismo riego escaso que un tomillo.|NC_MENTA
+ciboulette|Ciboulette|Allium schoenoprasum|A|OUT|SP|M|T|B|P|Forma matas; podés cortar hojas para cocina y dividir plantas establecidas. Necesita drenaje.|NC_CIBOULETTE
+lavanda|Lavanda inglesa|Lavandula angustifolia|A|OUT|S|D|T|M|M|Esta ficha corresponde a lavanda inglesa. Necesita sol y excelente drenaje; no extrapoles sus cuidados a todas las lavandas.|NC_LAVANDA
+calendula|Caléndula|Calendula officinalis|F|OUT|SP|M|U|B|P|Produce flores amarillas y anaranjadas. El calor intenso puede reducir su desempeño; retirando flores marchitas se favorece la continuidad floral.|NC_CALENDULA
+copete|Copete|Tagetes patula|F|OUT|SP|M|S|B|P|Elegí formas compactas para borduras o macetas. Retirá flores marchitas y mantené drenaje.|NC_COPETE
+petunia|Petunia|Petunia × hybrida|F|OUT|SP|M|S|M|V|Hay formas compactas y colgantes. Con poca luz disminuye la floración; el drenaje es importante.|NC_PETUNIA
+malvon|Malvón zonal|Pelargonium × hybridum (grupo zonal)|F|OUT|S|D|S|B|M|Apto para macetas luminosas. Dejá secar parcialmente el sustrato y protegelo de heladas.|NC_PELARGONIUM
+hortensia|Hortensia|Hydrangea macrophylla|F|OUT|P|M|T|M|G|Protegé del sol fuerte de la tarde. La poda depende del cultivar y de dónde forma las flores; no aplicar una poda anual genérica.|NC_HORTENSIA
+portulaca|Portulaca de flor|Portulaca grandiflora|F|OUT|S|X|S|B|P|Es baja, de hojas carnosas y flores vistosas. Buscá sol, calor y drenaje; evitá mantener el sustrato empapado.|NC_PORTULACA
+zinnia|Zinnia|Zinnia elegans|F|OUT|S|M|S|B|V|La altura cambia mucho por variedad. Sol, ventilación y drenaje ayudan a reducir problemas en el follaje.|NC_ZINNIA
+cosmos|Cosmos|Cosmos bipinnatus|F|OUT|S|D|S|B|V|Muchas variedades son altas. Reservá espacio y considerá soporte o reparo en lugares ventosos.|NC_COSMOS
+salvia-azul|Salvia azul|Salvia guaranitica|F|OUT|SP|M|U|B|G|Forma una mata expansiva y ofrece flores visitadas por picaflores. En maceta necesita espacio; no confundir con salvia culinaria.|NC_SALVIA,INTA_MARIPOSAS
+aliso|Aliso de flor|Lobularia maritima|F|OUT|SP|D|U|B|P|Planta baja para bordes y recipientes. La floración puede disminuir con calor intenso; cuidá el drenaje.|NC_ALISO
+gaura|Gaura|Oenothera lindheimeri|F|OUT|S|D|T|B|M|Tiene tallos florales livianos. Evitá fertilización excesiva y reservá lugar para su porte abierto.|NC_GAURA
+verbena-bonariensis|Verbena de Buenos Aires|Verbena bonariensis|F|OUT|S|D|U|B|G|Sus tallos altos llevan flores violetas. Puede resembrarse; no asumir aptitud ecológica en cualquier región.|NC_VERBENA
+potus|Potus|Epipremnum aureum|I|IN|IBML|D|S|B|V|Podés guiarlo o dejarlo colgar. Con poca luz suele crecer menos y perder parte de la variegación.|NC_POTUS
+monstera|Monstera o costilla de Adán|Monstera deliciosa|I|IN|IB|D|S|M|G|Necesita espacio y soporte al crecer. Dejá secar la parte superior del sustrato entre riegos.|NC_MONSTERA
+espatifilo|Espatifilo|Spathiphyllum spp.|I|IN|IBM|M|S|M|M|Evitá sol directo fuerte y sustrato encharcado. La forma y tamaño dependen de la especie o cultivar.|NC_ESPATIFILO
+sansevieria|Sansevieria o lengua de suegra|Dracaena trifasciata|I|IN|IBML|X|S|B|V|Tolera distintos niveles de luz natural, pero el exceso de riego es un problema. Hay variedades de tamaños diferentes.|NC_SANSEVIERIA
+zamioculca|Zamioculca|Zamioculcas zamiifolia|I|IN|IBML|X|S|B|M|Dejá secar el sustrato antes de regar. La luz indirecta abundante favorece el crecimiento; evitá sol directo intenso.|NC_ZAMIO
+lazo-de-amor|Lazo de amor|Chlorophytum comosum|I|IN|IBM|M|S|B|M|Apto para recipientes colgantes. Evitá sol fuerte y ajustá el riego cuando el crecimiento disminuye.|NC_LAZO
+gomero|Gomero|Ficus elastica|I|IN|IB|D|S|M|G|Reservá espacio para su crecimiento. Evitá cambios bruscos de ubicación, corrientes frías y exceso de agua.|NC_GOMERO
+aspidistra|Aspidistra|Aspidistra elatior|I|IN|IBM|D|T|B|M|Tolera ambientes de menor luz natural. Evitá sol directo y el exceso de agua; su crecimiento es pausado.|NC_ASPIDISTRA

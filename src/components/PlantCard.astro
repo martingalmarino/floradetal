@@ -1,0 +1,55 @@
+---
+import Icon from './Icon.astro';
+import PlantImage from './PlantImage.astro';
+import SaveButton from './SaveButton.astro';
+import { CATEGORY_LABEL, LIGHT_LABEL, MAINTENANCE_LABEL } from '../lib/labels';
+import { plantPath } from '../lib/site';
+import { searchIndexText } from '../lib/text';
+import type { Plant } from '../lib/schemas';
+
+interface Props {
+  plant: Plant;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { plant, headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+const isIndoor = plant.environments.includes('interior');
+const lightIcon = isIndoor ? 'window' : plant.lightProfile === 'full_sun' ? 'sun' : plant.lightProfile === 'bright_shade' ? 'shade' : 'sun-cloud';
+const firstSentence = plant.practicalNote.split(/(?<=\.)\s/)[0];
+---
+
+<article
+  class="plant-card"
+  data-plant-card
+  data-id={plant.id}
+  data-search={searchIndexText(plant)}
+  data-category={plant.category}
+  data-light={plant.lightProfile}
+  data-maintenance={plant.maintenance}
+  data-environment={plant.environments.join(' ')}
+  data-name={plant.commonName}
+>
+  <PlantImage plant={plant} />
+  <div class="plant-card__body">
+    <div>
+      <p class="eyebrow">{CATEGORY_LABEL[plant.category]}</p>
+      <Heading class="plant-card__title"><a href={plantPath(plant.slug)}>{plant.commonName}</a></Heading>
+      <p class="plant-card__sci">{plant.scientificName}</p>
+    </div>
+    <ul class="chips" aria-label="Características">
+      <li class="chip"><Icon name={lightIcon} size={15} />{LIGHT_LABEL[plant.lightProfile]}</li>
+      <li class="chip"><Icon name="clock" size={15} />{MAINTENANCE_LABEL[plant.maintenance]}</li>
+      <li class="chip">
+        <Icon name={isIndoor ? 'window' : 'leaf'} size={15} />{isIndoor ? 'Interior' : 'Exterior'}
+      </li>
+    </ul>
+    <p class="small muted">{firstSentence}</p>
+    <div class="plant-card__footer">
+      <a class="btn btn--primary btn--small" href={plantPath(plant.slug)}>
+        Ver ficha <span class="visually-hidden">de {plant.commonName}</span>
+      </a>
+      <SaveButton plantId={plant.id} plantName={plant.commonName} small />
+    </div>
+  </div>
+</article>

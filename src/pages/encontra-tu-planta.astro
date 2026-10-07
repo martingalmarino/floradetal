@@ -1,0 +1,443 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Choice from '../components/Choice.astro';
+import Icon from '../components/Icon.astro';
+import { localities } from '../lib/data';
+
+const STEPS = ['Ubicación', 'Espacio', 'Luz', 'Objetivo', 'Cuidado'];
+---
+
+<BaseLayout
+  title="Encontrá plantas para tu espacio | Patio Verde"
+  description="Respondé cinco preguntas sobre tu balcón, patio, jardín o interior y recibí plantas que se adaptan a tu luz, tu espacio y tu tiempo."
+>
+  <div class="container selector">
+    <header class="page-header">
+      <p class="eyebrow">Selector de plantas</p>
+      <h1>Encontrá tu planta</h1>
+      <p class="lead">
+        Contanos cómo es tu balcón, patio o jardín. Te ayudamos a elegir plantas según la luz, el espacio y el tiempo que
+        tenés.
+      </p>
+      <p class="small muted">
+        Son cinco pasos cortos. No pedimos correo, teléfono ni dirección, y tus respuestas quedan solo en este dispositivo.
+      </p>
+    </header>
+
+    <noscript>
+      <p class="callout callout--warning">
+        El selector necesita JavaScript para calcular las recomendaciones. Mientras tanto, podés explorar
+        <a href="/plantas/">todas las plantas</a> con sus fichas.
+      </p>
+    </noscript>
+
+    <div class="callout resume" data-resume hidden>
+      <Icon name="info" />
+      <div>
+        <p>Tenemos tus respuestas anteriores guardadas en este dispositivo.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn--primary btn--small" data-resume-results>Ver mis resultados</button>
+          <button type="button" class="btn btn--ghost btn--small" data-restart>Empezar de nuevo</button>
+        </div>
+      </div>
+    </div>
+
+    <form class="card selector__form" data-selector novalidate aria-label="Selector de plantas">
+      <ol class="progress" aria-label="Progreso">
+        {
+          STEPS.map((label, index) => (
+            <li data-progress-step={index}>
+              <span class="progress__dot" aria-hidden="true">{index + 1}</span>
+              <span class="progress__label">{label}</span>
+            </li>
+          ))
+        }
+      </ol>
+      <p class="progress__text" data-progress-text aria-live="polite">Paso 1 de 5: Ubicación</p>
+
+      <!-- Step A: location -->
+      <section class="step" data-step="0" aria-labelledby="step-0-title">
+        <h2 id="step-0-title" tabindex="-1">¿Dónde está tu espacio?</h2>
+        <div class="field">
+          <label for="localityId">Localidad</label>
+          <select id="localityId" name="localityId" aria-describedby="localityId-hint localityId-error">
+            <option value="">Elegí una opción</option>
+            {localities.map((l) => <option value={l.id}>{l.label}</option>)}
+          </select>
+          <p class="hint" id="localityId-hint">
+            Solo la usamos para saber qué tipo de calendario podemos mostrarte. No usamos la ubicación de tu dispositivo.
+          </p>
+          <p class="field-error" id="localityId-error" data-error-for="localityId" hidden></p>
+        </div>
+        <div class="callout" data-coverage-info hidden aria-live="polite"></div>
+      </section>
+
+      <!-- Step B: space -->
+      <section class="step" data-step="1" aria-labelledby="step-1-title">
+        <h2 id="step-1-title" tabindex="-1">¿Cómo es tu espacio?</h2>
+        <fieldset class="field" aria-describedby="space-error">
+          <legend>Tipo de espacio</legend>
+          <div class="choices choices--4">
+            <Choice type="radio" name="space" value="interior" title="Interior" description="Dentro de casa o de la oficina" />
+            <Choice type="radio" name="space" value="balcon" title="Balcón" description="Al aire libre, en altura" />
+            <Choice type="radio" name="space" value="patio" title="Patio o terraza" description="Al aire libre, con piso" />
+            <Choice type="radio" name="space" value="jardin" title="Jardín" description="Con tierra o canteros" />
+          </div>
+          <p class="field-error" id="space-error" data-error-for="space" hidden></p>
+        </fieldset>
+        <fieldset class="field" data-medium-field aria-describedby="medium-error">
+          <legend>¿Dónde vas a plantar?</legend>
+          <div class="choices choices--2">
+            <Choice type="radio" name="medium" value="maceta" title="En maceta o jardinera" />
+            <Choice type="radio" name="medium" value="suelo" title="En el suelo o un cantero" />
+          </div>
+          <p class="field-error" id="medium-error" data-error-for="medium" hidden></p>
+        </fieldset>
+        <fieldset class="field" aria-describedby="size-error">
+          <legend>Lugar disponible para la planta</legend>
+          <div class="choices">
+            <Choice type="radio" name="size" value="small" title="Chico" description="Una maceta mediana, un estante o un rincón" />
+            <Choice type="radio" name="size" value="medium" title="Mediano" description="Una jardinera, varias macetas o un cantero chico" />
+            <Choice type="radio" name="size" value="large" title="Grande" description="Lugar para que crezca a lo ancho y a lo alto" />
+          </div>
+          <p class="field-error" id="size-error" data-error-for="size" hidden></p>
+        </fieldset>
+      </section>
+
+      <!-- Step C: light -->
+      <section class="step" data-step="2" aria-labelledby="step-2-title">
+        <h2 id="step-2-title" tabindex="-1">¿Cuánta luz recibe?</h2>
+        <div data-outdoor-light>
+          <div class="field">
+            <label for="sunHours">Horas de sol directo en el lugar de la planta</label>
+            <div class="range">
+              <input
+                type="range"
+                id="sunHours"
+                name="sunHours"
+                min="0"
+                max="12"
+                step="1"
+                value="4"
+                aria-describedby="sunHours-hint"
+              />
+              <output for="sunHours" data-sun-output>4 horas</output>
+            </div>
+            <p class="hint" id="sunHours-hint">
+              Contá solo el sol que da directamente sobre la planta. <a href="/guias/como-medir-la-luz-para-tus-plantas/">Cómo medirlo</a>.
+            </p>
+          </div>
+          <fieldset class="field" data-sun-timing aria-describedby="sunTiming-error">
+            <legend>¿Cuándo le da el sol?</legend>
+            <div class="choices choices--4">
+              <Choice type="radio" name="sunTiming" value="manana" title="Sobre todo a la mañana" />
+              <Choice type="radio" name="sunTiming" value="tarde" title="Sobre todo a la tarde" />
+              <Choice type="radio" name="sunTiming" value="mixto" title="Mañana y tarde" />
+            </div>
+            <p class="field-error" id="sunTiming-error" data-error-for="sunTiming" hidden></p>
+          </fieldset>
+          <fieldset class="field" data-shade aria-describedby="shade-error">
+            <legend>Cuando no le da el sol, ¿cómo es el lugar?</legend>
+            <div class="choices choices--2">
+              <Choice
+                type="radio"
+                name="shade"
+                value="luminosa"
+                title="Luminoso"
+                description="Sombra clara, a cielo abierto o con luz reflejada"
+              />
+              <Choice type="radio" name="shade" value="oscura" title="Oscuro" description="Cerrado, muy sombreado o con poca luz" />
+            </div>
+            <p class="field-error" id="shade-error" data-error-for="shade" hidden></p>
+          </fieldset>
+        </div>
+        <fieldset class="field" data-indoor-light aria-describedby="indoorLight-hint indoorLight-error">
+          <legend>¿Cómo es la luz natural del ambiente?</legend>
+          <p class="hint" id="indoorLight-hint">“Sin sol directo” no es lo mismo que “sin luz”.</p>
+          <div class="choices choices--2">
+            <Choice type="radio" name="indoorLight" value="brillante" title="Indirecta brillante" description="Cerca de una ventana muy luminosa" />
+            <Choice type="radio" name="indoorLight" value="media" title="Indirecta media" description="A unos pasos de la ventana, ambiente claro" />
+            <Choice type="radio" name="indoorLight" value="baja" title="Poca luz natural" description="Lejos de la ventana o ventana sombreada" />
+            <Choice type="radio" name="indoorLight" value="sin_luz" title="Sin luz natural" description="Un ambiente sin ventanas" />
+          </div>
+          <p class="field-error" id="indoorLight-error" data-error-for="indoorLight" hidden></p>
+        </fieldset>
+      </section>
+
+      <!-- Step D: goals -->
+      <section class="step" data-step="3" aria-labelledby="step-3-title">
+        <h2 id="step-3-title" tabindex="-1">¿Qué te gustaría cultivar?</h2>
+        <fieldset class="field" aria-describedby="goals-hint goals-error">
+          <legend>Podés elegir más de una opción</legend>
+          <p class="hint" id="goals-hint" data-goals-hint></p>
+          <div class="choices choices--2">
+            <Choice type="checkbox" name="goals" value="follaje" title="Follaje" description="Plantas de hojas, para interior" />
+            <Choice type="checkbox" name="goals" value="flores" title="Flores" />
+            <Choice type="checkbox" name="goals" value="aromaticas" title="Aromáticas para cocina" />
+            <Choice type="checkbox" name="goals" value="huerta" title="Huerta" description="Hortalizas para cosechar" />
+          </div>
+          <p class="field-error" id="goals-error" data-error-for="goals" hidden></p>
+        </fieldset>
+      </section>
+
+      <!-- Step E: care -->
+      <section class="step" data-step="4" aria-labelledby="step-4-title">
+        <h2 id="step-4-title" tabindex="-1">Tu tiempo y las condiciones del lugar</h2>
+        <fieldset class="field" aria-describedby="time-error">
+          <legend>¿Cuánto tiempo querés dedicarle?</legend>
+          <div class="choices choices--2">
+            <Choice type="radio" name="time" value="low" title="Poco" description="Revisarla de vez en cuando" />
+            <Choice type="radio" name="time" value="medium" title="Un tiempo regular" description="Cuidados periódicos, como tutorar o cosechar" />
+          </div>
+          <p class="field-error" id="time-error" data-error-for="time" hidden></p>
+        </fieldset>
+        <fieldset class="field" data-outdoor-only aria-describedby="wind-error">
+          <legend>¿El lugar recibe viento fuerte con frecuencia?</legend>
+          <div class="choices choices--2">
+            <Choice type="radio" name="wind" value="si" title="Sí" />
+            <Choice type="radio" name="wind" value="no" title="No" />
+          </div>
+          <p class="field-error" id="wind-error" data-error-for="wind" hidden></p>
+        </fieldset>
+        <fieldset class="field" data-outdoor-only aria-describedby="frost-hint frost-error">
+          <legend>¿Este espacio suele quedar expuesto a heladas?</legend>
+          <p class="hint" id="frost-hint">Pensá en los inviernos habituales, no en el pronóstico de estos días.</p>
+          <div class="choices">
+            <Choice type="radio" name="frost" value="si" title="Sí" />
+            <Choice type="radio" name="frost" value="no" title="No" />
+            <Choice type="radio" name="frost" value="no_se" title="No sé" />
+          </div>
+          <p class="field-error" id="frost-error" data-error-for="frost" hidden></p>
+        </fieldset>
+      </section>
+
+      <div class="step-nav">
+        <button type="button" class="btn btn--ghost" data-back>
+          <Icon name="arrow-left" size={18} />
+          Atrás
+        </button>
+        <button type="button" class="btn btn--primary" data-next>
+          Siguiente
+          <Icon name="arrow-right" size={18} />
+        </button>
+        <button type="submit" class="btn btn--accent" data-submit hidden>Encontrar mis plantas</button>
+      </div>
+    </form>
+
+    <section class="results" data-results hidden aria-labelledby="results-title">
+      <div class="results__head">
+        <h2 id="results-title" tabindex="-1">Plantas para tu espacio</h2>
+        <p class="results__summary" data-results-summary aria-live="polite"></p>
+      </div>
+      <details class="card answers" data-answers>
+        <summary>Tus respuestas</summary>
+        <dl class="answers__list" data-answers-list></dl>
+      </details>
+      <div data-results-notices class="results__notices"></div>
+      <div data-results-good></div>
+      <div data-results-conditional></div>
+      <div data-results-empty></div>
+      <div class="btn-row results__actions no-print">
+        <button type="button" class="btn btn--secondary" data-edit-answers>Cambiar respuestas</button>
+        <a class="btn btn--ghost" href="/plantas/">Ver todas las plantas</a>
+        <a class="btn btn--ghost" href="/mi-jardin/">Ir a Mi jardín</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import '../scripts/selector';
+</script>
+
+<style>
+  .selector__form {
+    padding: var(--space-5) var(--space-4);
+  }
+
+  @media (min-width: 640px) {
+    .selector__form {
+      padding: var(--space-6);
+    }
+  }
+
+  .progress {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-1);
+    padding: 0;
+    margin: 0 0 var(--space-2);
+  }
+
+  .progress li {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-1);
+    text-align: center;
+    position: relative;
+  }
+
+  .progress li::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: -50%;
+    right: 50%;
+    height: 2px;
+    background: var(--color-border);
+    z-index: 0;
+  }
+
+  .progress li:first-child::before {
+    display: none;
+  }
+
+  .progress li[data-done='true']::before,
+  .progress li[aria-current='step']::before {
+    background: var(--color-forest);
+  }
+
+  .progress__dot {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 2px solid var(--color-border-strong);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+  }
+
+  .progress li[data-done='true'] .progress__dot {
+    background: var(--color-sage);
+    border-color: var(--color-forest);
+    color: var(--color-forest);
+  }
+
+  .progress li[aria-current='step'] .progress__dot {
+    background: var(--color-forest);
+    border-color: var(--color-forest);
+    color: #fff;
+  }
+
+  .progress__label {
+    font-size: 0.72rem;
+    color: var(--color-text-muted);
+    display: none;
+  }
+
+  @media (min-width: 560px) {
+    .progress__label {
+      display: block;
+    }
+  }
+
+  .progress__text {
+    font-weight: 650;
+    color: var(--color-forest);
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-5);
+  }
+
+  .step {
+    display: grid;
+    gap: var(--space-5);
+  }
+
+  :global(.js) .step:not(.is-active) {
+    display: none;
+  }
+
+  .step h2 {
+    font-size: var(--text-xl);
+    margin: 0;
+  }
+
+  .step h2:focus {
+    outline: none;
+  }
+
+  .range {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .range input {
+    flex: 1;
+    min-width: 0;
+    height: var(--tap);
+    accent-color: var(--color-forest);
+  }
+
+  .range output {
+    min-width: 5.5rem;
+    font-weight: 700;
+    color: var(--color-forest);
+    text-align: right;
+  }
+
+  .step-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .step-nav [data-next],
+  .step-nav [data-submit] {
+    margin-left: auto;
+  }
+
+  .resume {
+    margin-bottom: var(--space-4);
+  }
+
+  .resume .btn-row {
+    margin-top: var(--space-2);
+  }
+
+  .results {
+    margin-top: var(--space-6);
+  }
+
+  .results__head h2:focus {
+    outline: none;
+  }
+
+  .results__summary {
+    font-weight: 650;
+    color: var(--color-forest);
+  }
+
+  .answers {
+    margin-bottom: var(--space-4);
+    padding: var(--space-4);
+  }
+
+  .answers summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-forest);
+    min-height: var(--tap);
+    display: flex;
+    align-items: center;
+  }
+
+  .results__notices {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+
+  .results__actions {
+    margin-top: var(--space-6);
+  }
+</style>

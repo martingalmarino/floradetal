@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { calendar, localities, plants, publicSources } from '../lib/data';
+import { REFERENCE_LABEL } from '../lib/calendar';
+
+const argentine = publicSources.filter((s) => s.kind === 'argentina').map((s) => s.id);
+const foreign = publicSources.filter((s) => s.kind === 'foreign_reference').map((s) => s.id);
+const reference = localities.filter((l) => l.coverage === 'reference_temperate');
+const general = localities.filter((l) => l.coverage === 'general_only' && l.id !== 'otra');
+const crumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Metodología y fuentes', path: '/metodologia-y-fuentes/' },
+];
+---
+
+<BaseLayout
+  title="Metodología y fuentes | Patio Verde"
+  description="Cómo armamos las fichas, cómo se ordenan las recomendaciones, qué cubre el calendario orientativo y qué fuentes usamos."
+  breadcrumbs={crumbs}
+>
+  <div class="container">
+    <Breadcrumbs items={crumbs} />
+    <header class="page-header">
+      <p class="eyebrow">Transparencia</p>
+      <h1>Metodología y fuentes</h1>
+      <p class="lead">Qué información usamos, cómo la convertimos en recomendaciones y cuáles son sus límites.</p>
+    </header>
+
+    <div class="prose">
+      <h2>Qué es este sitio</h2>
+      <p>
+        Patio Verde es un nombre de trabajo para una guía práctica de jardinería hogareña en Argentina. No tiene afiliación
+        con el INTA, con NC State Extension ni con ninguna otra institución citada, y no usa sus logos ni implica su
+        respaldo.
+      </p>
+
+      <h2>Cómo armamos las fichas</h2>
+      <p>
+        La selección inicial tiene {plants.length} plantas comunes de huerta, aromáticas, flores e interior. Cada ficha es una
+        <strong>referencia inicial</strong>: se compiló el 6 de octubre de 2026 a partir de las fuentes que figuran en ella y
+        <strong>no fue revisada por un profesional de la horticultura</strong>. Esa fecha es de compilación, no una
+        certificación.
+      </p>
+      <ul>
+        <li>
+          Las categorías de luz, riego, frío, cuidado y espacio son simplificaciones editoriales para ayudarte a elegir, no
+          garantías. “Cuidado bajo” nunca significa “sin cuidado”.
+        </li>
+        <li>
+          Algunas fichas representan grupos hortícolas (por ejemplo, los pimientos dulces) y no distinguen variedades. No
+          damos por sentado que una variedad sea compacta si no está documentado.
+        </li>
+        <li>Guardamos los sinónimos y otros nombres comunes para que puedas encontrar la planta por cualquiera de ellos.</li>
+        <li>
+          No completamos medidas como altura, distancia de siembra o litros recomendados cuando la fuente inicial no las
+          aporta: quedan sin dato en lugar de inventarse.
+        </li>
+        <li>
+          <strong>Origen nativo:</strong> no evaluado en esta versión. Que una planta no figure como nativa no significa que
+          no lo sea.
+        </li>
+        <li>
+          <strong>Mascotas:</strong> la seguridad para mascotas no fue evaluada. No hay un filtro de “apta para mascotas” y
+          nunca interpretamos la falta de datos como seguridad.
+        </li>
+      </ul>
+
+      <h2>Cómo funcionan las recomendaciones</h2>
+      <p>Cuando completás <a href="/encontra-tu-planta/">Encontrá tu planta</a>, seguimos siempre los mismos pasos:</p>
+      <ol>
+        <li>
+          <strong>Descartamos lo que no corresponde</strong>: plantas de interior para un espacio al aire libre, hortalizas y
+          flores de exterior para un interior, plantas de sol pleno en sombra profunda, plantas grandes en un espacio chico, o
+          cualquier planta si el ambiente no tiene luz natural.
+        </li>
+        <li>
+          <strong>Ordenamos el resto</strong> según cuánto coinciden con tu luz, tu espacio, lo que buscás y el tiempo que
+          tenés. Es un orden práctico definido por nosotros, no un índice científico ni una probabilidad.
+        </li>
+        <li>
+          <strong>Separamos las opciones con condiciones</strong>: si hay heladas, viento fuerte, poco sol, una variedad que
+          tenés que elegir compacta o más dedicación de la que indicaste, la planta aparece aparte y con la condición
+          explicada.
+        </li>
+      </ol>
+      <p>
+        El resultado es siempre el mismo para las mismas respuestas: no hay azar, inteligencia artificial ni consultas a
+        servicios externos. Las horas de sol (6 o más para sol pleno, 3 o más para sol o media sombra) son referencias
+        prácticas, no límites biológicos exactos.
+      </p>
+      <p>
+        Que una planta se adapte a tu espacio no significa que puedas sembrarla o plantarla este mes. Esa es otra pregunta,
+        que respondemos con el calendario y solo cuando hay una referencia que corresponde.
+      </p>
+
+      <h2>{REFERENCE_LABEL}</h2>
+      <p>
+        El calendario reúne ventanas de referencia seleccionadas de publicaciones del INTA. Es útil como punto de partida en
+        zonas templadas de llanura, pero <strong>no es un calendario verificado para cada ciudad argentina</strong>. No
+        combinamos publicaciones distintas en un calendario nacional falsamente preciso, y no corremos las fechas uno o dos
+        meses para otras regiones.
+      </p>
+      <p>
+        Las fechas cambian según la localidad, las heladas, la variedad y el lugar de cultivo. Tomalas como referencia y
+        contrastalas con un vivero o una agencia de INTA de tu zona. No mostramos pronósticos, alertas ni temperaturas.
+      </p>
+      <h3>Cobertura por localidad</h3>
+      <p>
+        Las localidades del selector son opciones editoriales para esta versión, no una afirmación de que compartan fechas de
+        siembra.
+      </p>
+      <ul>
+        <li>
+          <strong>Se ofrece la referencia templada</strong> (siempre rotulada como orientativa):
+          {reference.map((l) => l.label).join('; ')}. En Córdoba Capital y Río Cuarto, la altura y las heladas pueden cambiar
+          las fechas, especialmente en zonas serranas y periurbanas.
+        </li>
+        <li>
+          <strong>Primero, orientación general y fuentes</strong>: {general.map((l) => l.label).join('; ')} y cualquier otra
+          localidad. Podés abrir la referencia templada a modo de consulta, con su alcance visible.
+        </li>
+      </ul>
+      <p>
+        Lechuga, zanahoria, remolacha y rúcula tienen solo orientación general, sin meses. Para flores, plantas de interior y
+        aromáticas perennes priorizamos revisiones de cuidado en lugar de fechas de poda o siembra sin respaldo.
+      </p>
+      {
+        calendar.localOverrides.length === 0 && (
+          <p class="small muted">
+            Todavía no hay calendarios locales específicos. La estructura de datos está preparada para sumarlos con su propia
+            fuente, alcance geográfico, distinción entre cultivo protegido y al aire libre, y fecha de revisión.
+          </p>
+        )
+      }
+
+      <h2>Calculadora de sustrato</h2>
+      <p>
+        Estima el volumen geométrico útil a partir de medidas internas, descuenta el pan de raíces si lo indicás y calcula
+        bolsas redondeando hacia arriba. No recomienda una mezcla de sustrato universal, cantidades de riego ni la carga que
+        soporta un balcón.
+      </p>
+
+      <h2>Qué no hace este sitio</h2>
+      <p>
+        No identifica plantas por foto, no diagnostica enfermedades, no da dosis de productos ni tratamientos, no hace
+        afirmaciones medicinales y no envía recordatorios ni notificaciones.
+      </p>
+
+      <h2>Cómo se actualiza</h2>
+      <p>
+        Las fichas, el calendario y las fuentes viven en archivos de datos validados automáticamente: cada referencia a una
+        fuente o a una planta tiene que existir para que el sitio se publique. Cuando se agregue o revise información, cada
+        ficha podrá registrar su fecha de revisión editorial. Si una fuente no puede consultarse, mantenemos el enlace y el
+        dato compilado, pero no declaramos una verificación nueva.
+      </p>
+
+      <h2 id="fuentes">Fuentes</h2>
+      <p class="small muted">
+        Fecha de consulta para esta compilación: 6 de octubre de 2026. Es la fecha de nuestra revisión, no la de publicación
+        de cada fuente.
+      </p>
+      <h3>Fuentes argentinas</h3>
+      <SourceLinks ids={argentine} showScope />
+      <h3>Referencias hortícolas extranjeras</h3>
+      <p class="small">
+        Respaldan características generales de cada planta. Sus nombres de meses y zonas de rusticidad (USDA) no se aplican
+        directamente a la Argentina.
+      </p>
+      <SourceLinks ids={foreign} />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .prose h3 {
+    margin-top: var(--space-5);
+  }
+
+  .prose :global(.source-list) {
+    margin-bottom: var(--space-5);
+  }
+</style>

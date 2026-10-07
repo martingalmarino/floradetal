@@ -1,0 +1,174 @@
+---
+import Icon from './Icon.astro';
+import { NAV_ITEMS, SITE_NAME } from '../lib/site';
+
+const current = Astro.url.pathname;
+const isCurrent = (href: string) => current === href || (href !== '/' && current.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/" aria-label={`${SITE_NAME}, inicio`}>
+      <span class="brand__mark" aria-hidden="true"><Icon name="sprout" size={22} /></span>
+      <span class="brand__name">{SITE_NAME}</span>
+    </a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-menu-toggle
+    >
+      <Icon name="menu" size={22} />
+      <span>Menú</span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Principal" data-menu>
+      <ul>
+        {
+          NAV_ITEMS.map((item) => (
+            <li>
+              <a href={item.href} aria-current={isCurrent(item.href) ? 'page' : undefined}>
+                {item.label}
+                {item.href === '/mi-jardin/' && <span class="nav-count" data-garden-count hidden />}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgb(247 245 239 / 94%);
+    backdrop-filter: saturate(1.2) blur(6px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 64px;
+    flex-wrap: wrap;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    text-decoration: none;
+    color: var(--color-forest);
+    min-height: var(--tap);
+  }
+
+  .brand__mark {
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--color-forest);
+    color: var(--color-sage);
+  }
+
+  .brand__name {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .menu-toggle {
+    display: none;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--tap);
+    padding: 0 var(--space-3);
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    color: var(--color-forest);
+    font: inherit;
+    font-weight: 650;
+    font-size: var(--text-sm);
+    cursor: pointer;
+  }
+
+  .site-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .site-nav a {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--tap);
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-pill);
+    text-decoration: none;
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+
+  .site-nav a:hover {
+    background: var(--color-sage-200);
+    color: var(--color-forest);
+  }
+
+  .site-nav a[aria-current='page'] {
+    background: var(--color-sage);
+    color: var(--color-forest);
+  }
+
+  .nav-count {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.4rem;
+    height: 1.4rem;
+    padding: 0 0.35rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-terracotta);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+
+  /* Without JavaScript the navigation stays visible and wraps. */
+  @media (max-width: 899px) {
+    :global(.js) .menu-toggle {
+      display: inline-flex;
+    }
+
+    .site-nav {
+      width: 100%;
+      padding-bottom: var(--space-3);
+    }
+
+    :global(.js) .site-nav:not(.is-open) {
+      display: none;
+    }
+
+    .site-nav ul {
+      flex-direction: column;
+    }
+
+    .site-nav a {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      padding: 0 var(--space-4);
+      font-size: var(--text-base);
+    }
+  }
+</style>

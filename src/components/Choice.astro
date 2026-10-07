@@ -1,0 +1,20 @@
+---
+interface Props {
+  type: 'radio' | 'checkbox';
+  name: string;
+  value: string;
+  title: string;
+  description?: string;
+}
+
+const { type, name, value, title, description } = Astro.props;
+const id = `${name}-${value}`;
+---
+
+<label class="choice" for={id}>
+  <input type={type} id={id} name={name} value={value} />
+  <span class="choice__text">
+    <span class="choice__title">{title}</span>
+    {description && <span class="choice__desc">{description}</span>}
+  </span>
+</label>

@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout
+  title="Mi jardín | Patio Verde"
+  description="Tus plantas guardadas, notas y revisiones de cuidado, guardadas en este dispositivo."
+  noindex
+>
+  <div class="container garden">
+    <header class="page-header garden__header">
+      <div>
+        <p class="eyebrow">Tu espacio</p>
+        <h1>Mi jardín</h1>
+        <p class="device-badge"><Icon name="check-circle" size={18} />Guardado en este dispositivo</p>
+        <p class="small muted">
+          Sin cuentas ni sincronización: lo que guardes acá queda en este navegador. No enviamos recordatorios cuando el sitio
+          está cerrado.
+        </p>
+      </div>
+      <div class="btn-row garden__toolbar no-print" data-toolbar hidden>
+        <button type="button" class="btn btn--ghost btn--small" data-share-list>
+          <Icon name="share" size={18} />Compartir lista
+        </button>
+        <button type="button" class="btn btn--ghost btn--small" data-print>
+          <Icon name="print" size={18} />Imprimir
+        </button>
+      </div>
+    </header>
+
+    <p class="callout callout--warning" data-storage-warning hidden>
+      <Icon name="alert" />
+      <span>
+        Este navegador no permite guardar datos. Podés usar Mi jardín igual, pero los cambios se pierden al cerrar o recargar
+        la página.
+      </span>
+    </p>
+
+    <noscript>
+      <p class="callout callout--warning">Mi jardín necesita JavaScript para leer los datos guardados en tu dispositivo.</p>
+    </noscript>
+
+    <div class="card card--sage garden__empty" data-empty hidden>
+      <Icon name="sprout" size={32} />
+      <p class="garden__empty-text">Tu jardín empieza con una planta. Explorá opciones y guardá las que te gusten.</p>
+      <div class="btn-row">
+        <a class="btn btn--primary" href="/encontra-tu-planta/">Encontrar mis plantas</a>
+        <a class="btn btn--secondary" href="/plantas/">Ver todas las plantas</a>
+      </div>
+    </div>
+
+    <p class="result-count" data-count aria-live="polite"></p>
+    <ul class="garden__list" data-list></ul>
+
+    <section class="garden__history" data-history-section hidden aria-labelledby="historial">
+      <h2 id="historial">Historial de revisiones</h2>
+      <p class="small muted">Las últimas revisiones que marcaste con “Ya lo revisé”.</p>
+      <ol class="history-list" data-history></ol>
+    </section>
+
+    <section class="garden__data no-print" aria-labelledby="datos">
+      <h2 id="datos">Tus datos</h2>
+      <p class="small">
+        Podés borrar las plantas guardadas, las notas, las revisiones y tus respuestas del selector de este dispositivo.
+        <a href="/privacidad/">Qué guardamos</a>.
+      </p>
+      <button type="button" class="btn btn--danger" data-reset>
+        <Icon name="trash" size={18} />Borrar mis datos
+      </button>
+    </section>
+
+    <dialog data-reset-dialog aria-labelledby="reset-title" aria-describedby="reset-desc">
+      <h2 id="reset-title" class="dialog-title">¿Borrar todos tus datos?</h2>
+      <p id="reset-desc">
+        Se van a eliminar de este dispositivo tus plantas guardadas, notas, fechas, revisiones y respuestas del selector. No se
+        puede deshacer.
+      </p>
+      <form method="dialog" class="btn-row">
+        <button class="btn btn--ghost" value="cancel" autofocus>Cancelar</button>
+        <button class="btn btn--danger" value="confirm">Sí, borrar todo</button>
+      </form>
+    </dialog>
+  </div>
+</BaseLayout>
+
+<script>
+  import '../scripts/garden-page';
+</script>
+
+<style is:global>
+  .garden__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: var(--space-4);
+  }
+
+  .device-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background: var(--color-sage);
+    color: var(--color-forest);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-pill);
+  }
+
+  .garden__empty {
+    display: grid;
+    justify-items: start;
+    gap: var(--space-3);
+    color: var(--color-forest);
+  }
+
+  .garden__empty-text {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    margin: 0;
+  }
+
+  .garden__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  .garden-item {
+    display: grid;
+    gap: var(--space-4);
+  }
+
+  @media (min-width: 860px) {
+    .garden-item {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .garden-item__head {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .garden-item__title {
+    font-size: var(--text-xl);
+    margin: 0;
+  }
+
+  .garden-item__title a {
+    text-decoration: none;
+  }
+
+  .garden-item__sci {
+    font-style: italic;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  .garden-item__status {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    min-height: 1.2em;
+    margin: 0;
+  }
+
+  .garden-item__due {
+    color: var(--color-terracotta-text);
+    font-weight: 700;
+    font-size: var(--text-sm);
+    margin: 0;
+  }
+
+  .garden-item__checks h3 {
+    font-size: var(--text-base);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    margin-bottom: var(--space-2);
+  }
+
+  .garden-item__last {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+  }
+
+  .garden__history,
+  .garden__data {
+    margin-top: var(--space-7);
+  }
+
+  .garden__history h2,
+  .garden__data h2 {
+    font-size: var(--text-xl);
+  }
+
+  .history-list {
+    display: grid;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+  }
+
+  .dialog-title {
+    font-size: var(--text-xl);
+  }
+</style>

@@ -1,0 +1,1758 @@
+[
+  {
+    "id": "tomate",
+    "slug": "tomate",
+    "commonName": "Tomate",
+    "scientificName": "Solanum lycopersicum",
+    "aliases": [
+      "tomate cherry"
+    ],
+    "identityNotes": [
+      "Si buscaste “tomate cherry”, llegaste a la ficha general del tomate: el cherry es un tipo de fruto chico y no significa que la planta sea enana o compacta."
+    ],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "varies",
+    "tallOrTrained": true,
+    "practicalNote": "Elegí la variedad según el espacio; muchas necesitan tutor. Mantené el riego parejo y evitá trasplantar al exterior con riesgo de heladas.",
+    "sourceIds": [
+      "NC_TOMATE"
+    ],
+    "careSourceIds": [
+      "NC_TOMATE"
+    ],
+    "calendarRuleIds": [
+      "tomate-iniciar-almacigo",
+      "tomate-trasplantar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "morron",
+    "slug": "morron",
+    "commonName": "Morrón",
+    "scientificName": "Capsicum annuum (grupo de pimientos dulces)",
+    "aliases": [
+      "pimiento",
+      "pimiento dulce",
+      "pimentón dulce"
+    ],
+    "identityNotes": [
+      "La ficha agrupa a los pimientos dulces; las variedades difieren en forma, color y tamaño."
+    ],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Buscá un lugar cálido y luminoso. El fruto verde o maduro depende de la variedad y del momento de cosecha.",
+    "sourceIds": [
+      "NC_MORRON"
+    ],
+    "careSourceIds": [
+      "NC_MORRON"
+    ],
+    "calendarRuleIds": [
+      "morron-iniciar-almacigo",
+      "morron-trasplantar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "lechuga",
+    "slug": "lechuga",
+    "commonName": "Lechuga",
+    "scientificName": "Lactuca sativa",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "El calor y la falta de humedad pueden acelerar la floración. Elegí variedades adecuadas a la época.",
+    "sourceIds": [
+      "NC_LECHUGA"
+    ],
+    "careSourceIds": [
+      "NC_LECHUGA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "acelga",
+    "slug": "acelga",
+    "commonName": "Acelga",
+    "scientificName": "Beta vulgaris (grupo Cicla)",
+    "aliases": [],
+    "identityNotes": [
+      "Representa al grupo hortícola de la acelga dentro de Beta vulgaris."
+    ],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Podés cosechar hojas externas y conservar el centro de crecimiento. La época depende de la variedad y las temperaturas.",
+    "sourceIds": [
+      "INTA_PLAN",
+      "INTA_OTONO"
+    ],
+    "careSourceIds": [
+      "INTA_PLAN",
+      "INTA_OTONO"
+    ],
+    "calendarRuleIds": [
+      "acelga-sembrar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "rabanito",
+    "slug": "rabanito",
+    "commonName": "Rabanito",
+    "scientificName": "Raphanus raphanistrum subsp. sativus",
+    "aliases": [
+      "Raphanus sativus"
+    ],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Sembrá directamente y evitá que las plantas queden amontonadas. Cosechá antes de que las raíces pierdan calidad.",
+    "sourceIds": [
+      "NC_RABANITO"
+    ],
+    "careSourceIds": [
+      "NC_RABANITO"
+    ],
+    "calendarRuleIds": [
+      "rabanito-sembrar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "zanahoria",
+    "slug": "zanahoria",
+    "commonName": "Zanahoria",
+    "scientificName": "Daucus carota subsp. sativus",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "medium",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Necesita espacio para desarrollar la raíz y sustrato suelto. La siembra directa evita alterar la raíz principal.",
+    "sourceIds": [
+      "NC_ZANAHORIA"
+    ],
+    "careSourceIds": [
+      "NC_ZANAHORIA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "espinaca",
+    "slug": "espinaca",
+    "commonName": "Espinaca",
+    "scientificName": "Spinacia oleracea",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Es un cultivo de época fresca. El calor favorece la subida a flor y reduce la calidad de las hojas.",
+    "sourceIds": [
+      "NC_ESPINACA"
+    ],
+    "careSourceIds": [
+      "NC_ESPINACA"
+    ],
+    "calendarRuleIds": [
+      "espinaca-sembrar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "rucula",
+    "slug": "rucula",
+    "commonName": "Rúcula",
+    "scientificName": "Eruca vesicaria",
+    "aliases": [
+      "rucula"
+    ],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Cosechá hojas tiernas; el calor puede acelerar la floración. Diferenciá esta especie de otras rúculas comerciales.",
+    "sourceIds": [
+      "NC_RUCULA"
+    ],
+    "careSourceIds": [
+      "NC_RUCULA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "arveja",
+    "slug": "arveja",
+    "commonName": "Arveja",
+    "scientificName": "Pisum sativum (sin. Lathyrus oleraceus)",
+    "aliases": [
+      "Pisum sativum",
+      "Lathyrus oleraceus"
+    ],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "medium",
+    "spaceClass": "varies",
+    "tallOrTrained": true,
+    "practicalNote": "Elegí una variedad acorde al espacio. Las trepadoras necesitan soporte; el calor intenso limita el cultivo.",
+    "sourceIds": [
+      "NC_ARVEJA"
+    ],
+    "careSourceIds": [
+      "NC_ARVEJA"
+    ],
+    "calendarRuleIds": [
+      "arveja-sembrar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "ajo",
+    "slug": "ajo",
+    "commonName": "Ajo",
+    "scientificName": "Allium sativum",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Se inicia a partir de dientes. El desarrollo y la cosecha cambian con la variedad; evitá el encharcamiento.",
+    "sourceIds": [
+      "NC_AJO"
+    ],
+    "careSourceIds": [
+      "NC_AJO"
+    ],
+    "calendarRuleIds": [
+      "ajo-plantar-dientes"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "chaucha",
+    "slug": "chaucha",
+    "commonName": "Chaucha",
+    "scientificName": "Phaseolus vulgaris",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "varies",
+    "tallOrTrained": true,
+    "practicalNote": "Hay variedades enanas y trepadoras. Las de rama necesitan tutor y espacio vertical; protegé el cultivo del frío.",
+    "sourceIds": [
+      "NC_CHAUCHA"
+    ],
+    "careSourceIds": [
+      "NC_CHAUCHA"
+    ],
+    "calendarRuleIds": [
+      "chaucha-sembrar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "remolacha",
+    "slug": "remolacha",
+    "commonName": "Remolacha",
+    "scientificName": "Beta vulgaris (grupo Conditiva)",
+    "aliases": [],
+    "identityNotes": [
+      "Representa al grupo hortícola de la remolacha dentro de Beta vulgaris."
+    ],
+    "category": "huerta",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Dejá lugar para que engrose la raíz. Consultá la variedad y el calendario antes de sembrar.",
+    "sourceIds": [
+      "INTA_PLAN",
+      "INTA_OTONO"
+    ],
+    "careSourceIds": [
+      "INTA_PLAN",
+      "INTA_OTONO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "albahaca",
+    "slug": "albahaca",
+    "commonName": "Albahaca",
+    "scientificName": "Ocimum basilicum",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Necesita condiciones cálidas. Podés cosechar brotes y retirar flores si priorizás la producción de hojas.",
+    "sourceIds": [
+      "NC_ALBAHACA"
+    ],
+    "careSourceIds": [
+      "NC_ALBAHACA"
+    ],
+    "calendarRuleIds": [
+      "albahaca-iniciar-almacigo",
+      "albahaca-trasplantar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "perejil",
+    "slug": "perejil",
+    "commonName": "Perejil",
+    "scientificName": "Petroselinum crispum",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "La germinación puede ser lenta. Cosechá hojas externas y mantené humedad sin encharcar.",
+    "sourceIds": [
+      "NC_PEREJIL"
+    ],
+    "careSourceIds": [
+      "NC_PEREJIL"
+    ],
+    "calendarRuleIds": [
+      "perejil-sembrar"
+    ],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "romero",
+    "slug": "romero",
+    "commonName": "Romero",
+    "scientificName": "Salvia rosmarinus",
+    "aliases": [
+      "Rosmarinus officinalis"
+    ],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "unspecified",
+    "maintenance": "low",
+    "spaceClass": "varies",
+    "tallOrTrained": false,
+    "practicalNote": "Priorizá un sustrato con buen drenaje. Es un arbusto: reservá espacio según la variedad y el tipo de cultivo.",
+    "sourceIds": [
+      "INTA_ROMERO"
+    ],
+    "careSourceIds": [
+      "INTA_ROMERO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "tomillo",
+    "slug": "tomillo",
+    "commonName": "Tomillo",
+    "scientificName": "Thymus vulgaris",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Funciona mejor con sol y buen drenaje. Evitá sustrato permanentemente húmedo y conservá parte verde al recortar.",
+    "sourceIds": [
+      "NC_TOMILLO"
+    ],
+    "careSourceIds": [
+      "NC_TOMILLO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "oregano",
+    "slug": "oregano",
+    "commonName": "Orégano",
+    "scientificName": "Origanum vulgare",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Buscá sol y suelo drenante. Las variedades variegadas pueden agradecer protección del sol más intenso.",
+    "sourceIds": [
+      "NC_OREGANO"
+    ],
+    "careSourceIds": [
+      "NC_OREGANO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "menta",
+    "slug": "menta",
+    "commonName": "Menta o hierbabuena",
+    "scientificName": "Mentha spicata",
+    "aliases": [
+      "hierbabuena"
+    ],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Cultivala en un recipiente propio para limitar su expansión. No la manejes con el mismo riego escaso que un tomillo.",
+    "sourceIds": [
+      "NC_MENTA"
+    ],
+    "careSourceIds": [
+      "NC_MENTA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "ciboulette",
+    "slug": "ciboulette",
+    "commonName": "Ciboulette",
+    "scientificName": "Allium schoenoprasum",
+    "aliases": [
+      "cebollino"
+    ],
+    "identityNotes": [],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Forma matas; podés cortar hojas para cocina y dividir plantas establecidas. Necesita drenaje.",
+    "sourceIds": [
+      "NC_CIBOULETTE"
+    ],
+    "careSourceIds": [
+      "NC_CIBOULETTE"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "lavanda",
+    "slug": "lavanda",
+    "commonName": "Lavanda inglesa",
+    "scientificName": "Lavandula angustifolia",
+    "aliases": [],
+    "identityNotes": [
+      "Corresponde a la lavanda inglesa; otras lavandas tienen necesidades distintas."
+    ],
+    "category": "aromatica",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "some_tolerance",
+    "maintenance": "medium",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Esta ficha corresponde a lavanda inglesa. Necesita sol y excelente drenaje; no extrapoles sus cuidados a todas las lavandas.",
+    "sourceIds": [
+      "NC_LAVANDA"
+    ],
+    "careSourceIds": [
+      "NC_LAVANDA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "calendula",
+    "slug": "calendula",
+    "commonName": "Caléndula",
+    "scientificName": "Calendula officinalis",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "unspecified",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Produce flores amarillas y anaranjadas. El calor intenso puede reducir su desempeño; retirando flores marchitas se favorece la continuidad floral.",
+    "sourceIds": [
+      "NC_CALENDULA"
+    ],
+    "careSourceIds": [
+      "NC_CALENDULA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "copete",
+    "slug": "copete",
+    "commonName": "Copete",
+    "scientificName": "Tagetes patula",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Elegí formas compactas para borduras o macetas. Retirá flores marchitas y mantené drenaje.",
+    "sourceIds": [
+      "NC_COPETE"
+    ],
+    "careSourceIds": [
+      "NC_COPETE"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "petunia",
+    "slug": "petunia",
+    "commonName": "Petunia",
+    "scientificName": "Petunia × hybrida",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "varies",
+    "tallOrTrained": false,
+    "practicalNote": "Hay formas compactas y colgantes. Con poca luz disminuye la floración; el drenaje es importante.",
+    "sourceIds": [
+      "NC_PETUNIA"
+    ],
+    "careSourceIds": [
+      "NC_PETUNIA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "malvon",
+    "slug": "malvon",
+    "commonName": "Malvón zonal",
+    "scientificName": "Pelargonium × hybridum (grupo zonal)",
+    "aliases": [
+      "malvon",
+      "geranio zonal"
+    ],
+    "identityNotes": [
+      "“Geranio” es un nombre común que se usa para plantas distintas. Esta ficha corresponde al malvón zonal y no a todos los pelargonios."
+    ],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Apto para macetas luminosas. Dejá secar parcialmente el sustrato y protegelo de heladas.",
+    "sourceIds": [
+      "NC_PELARGONIUM"
+    ],
+    "careSourceIds": [
+      "NC_PELARGONIUM"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "hortensia",
+    "slug": "hortensia",
+    "commonName": "Hortensia",
+    "scientificName": "Hydrangea macrophylla",
+    "aliases": [],
+    "identityNotes": [
+      "Hay muchos cultivares de hortensia; tamaño, floración y poda cambian entre ellos."
+    ],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "bright_shade",
+    "waterProfile": "even_moisture",
+    "frostProfile": "some_tolerance",
+    "maintenance": "medium",
+    "spaceClass": "large",
+    "tallOrTrained": false,
+    "practicalNote": "Protegé del sol fuerte de la tarde. La poda depende del cultivar y de dónde forma las flores; no aplicar una poda anual genérica.",
+    "sourceIds": [
+      "NC_HORTENSIA"
+    ],
+    "careSourceIds": [
+      "NC_HORTENSIA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "portulaca",
+    "slug": "portulaca",
+    "commonName": "Portulaca de flor",
+    "scientificName": "Portulaca grandiflora",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "substantial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Es baja, de hojas carnosas y flores vistosas. Buscá sol, calor y drenaje; evitá mantener el sustrato empapado.",
+    "sourceIds": [
+      "NC_PORTULACA"
+    ],
+    "careSourceIds": [
+      "NC_PORTULACA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "zinnia",
+    "slug": "zinnia",
+    "commonName": "Zinnia",
+    "scientificName": "Zinnia elegans",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "varies",
+    "tallOrTrained": true,
+    "practicalNote": "La altura cambia mucho por variedad. Sol, ventilación y drenaje ayudan a reducir problemas en el follaje.",
+    "sourceIds": [
+      "NC_ZINNIA"
+    ],
+    "careSourceIds": [
+      "NC_ZINNIA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "cosmos",
+    "slug": "cosmos",
+    "commonName": "Cosmos",
+    "scientificName": "Cosmos bipinnatus",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "varies",
+    "tallOrTrained": true,
+    "practicalNote": "Muchas variedades son altas. Reservá espacio y considerá soporte o reparo en lugares ventosos.",
+    "sourceIds": [
+      "NC_COSMOS"
+    ],
+    "careSourceIds": [
+      "NC_COSMOS"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "salvia-azul",
+    "slug": "salvia-azul",
+    "commonName": "Salvia azul",
+    "scientificName": "Salvia guaranitica",
+    "aliases": [],
+    "identityNotes": [
+      "Es una salvia ornamental; no confundir con la salvia culinaria."
+    ],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "even_moisture",
+    "frostProfile": "unspecified",
+    "maintenance": "low",
+    "spaceClass": "large",
+    "tallOrTrained": false,
+    "practicalNote": "Forma una mata expansiva y ofrece flores visitadas por picaflores. En maceta necesita espacio; no confundir con salvia culinaria.",
+    "sourceIds": [
+      "NC_SALVIA",
+      "INTA_MARIPOSAS"
+    ],
+    "careSourceIds": [
+      "NC_SALVIA",
+      "INTA_MARIPOSAS"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "aliso",
+    "slug": "aliso",
+    "commonName": "Aliso de flor",
+    "scientificName": "Lobularia maritima",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "sun_or_partial",
+    "waterProfile": "partial_dry",
+    "frostProfile": "unspecified",
+    "maintenance": "low",
+    "spaceClass": "small",
+    "tallOrTrained": false,
+    "practicalNote": "Planta baja para bordes y recipientes. La floración puede disminuir con calor intenso; cuidá el drenaje.",
+    "sourceIds": [
+      "NC_ALISO"
+    ],
+    "careSourceIds": [
+      "NC_ALISO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "gaura",
+    "slug": "gaura",
+    "commonName": "Gaura",
+    "scientificName": "Oenothera lindheimeri",
+    "aliases": [
+      "Gaura lindheimeri"
+    ],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Tiene tallos florales livianos. Evitá fertilización excesiva y reservá lugar para su porte abierto.",
+    "sourceIds": [
+      "NC_GAURA"
+    ],
+    "careSourceIds": [
+      "NC_GAURA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "verbena-bonariensis",
+    "slug": "verbena-bonariensis",
+    "commonName": "Verbena de Buenos Aires",
+    "scientificName": "Verbena bonariensis",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "flores",
+    "environments": [
+      "exterior"
+    ],
+    "lightProfile": "full_sun",
+    "waterProfile": "partial_dry",
+    "frostProfile": "unspecified",
+    "maintenance": "low",
+    "spaceClass": "large",
+    "tallOrTrained": true,
+    "practicalNote": "Sus tallos altos llevan flores violetas. Puede resembrarse; no asumir aptitud ecológica en cualquier región.",
+    "sourceIds": [
+      "NC_VERBENA"
+    ],
+    "careSourceIds": [
+      "NC_VERBENA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "potus",
+    "slug": "potus",
+    "commonName": "Potus",
+    "scientificName": "Epipremnum aureum",
+    "aliases": [
+      "pothos"
+    ],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_tolerates_low",
+    "waterProfile": "partial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "varies",
+    "tallOrTrained": false,
+    "practicalNote": "Podés guiarlo o dejarlo colgar. Con poca luz suele crecer menos y perder parte de la variegación.",
+    "sourceIds": [
+      "NC_POTUS"
+    ],
+    "careSourceIds": [
+      "NC_POTUS"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "monstera",
+    "slug": "monstera",
+    "commonName": "Monstera o costilla de Adán",
+    "scientificName": "Monstera deliciosa",
+    "aliases": [
+      "costilla de Adán"
+    ],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_bright",
+    "waterProfile": "partial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "large",
+    "tallOrTrained": false,
+    "practicalNote": "Necesita espacio y soporte al crecer. Dejá secar la parte superior del sustrato entre riegos.",
+    "sourceIds": [
+      "NC_MONSTERA"
+    ],
+    "careSourceIds": [
+      "NC_MONSTERA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "espatifilo",
+    "slug": "espatifilo",
+    "commonName": "Espatifilo",
+    "scientificName": "Spathiphyllum spp.",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_bright_medium",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Evitá sol directo fuerte y sustrato encharcado. La forma y tamaño dependen de la especie o cultivar.",
+    "sourceIds": [
+      "NC_ESPATIFILO"
+    ],
+    "careSourceIds": [
+      "NC_ESPATIFILO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "sansevieria",
+    "slug": "sansevieria",
+    "commonName": "Sansevieria o lengua de suegra",
+    "scientificName": "Dracaena trifasciata",
+    "aliases": [
+      "Sansevieria trifasciata",
+      "lengua de suegra"
+    ],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_tolerates_low",
+    "waterProfile": "substantial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "varies",
+    "tallOrTrained": false,
+    "practicalNote": "Tolera distintos niveles de luz natural, pero el exceso de riego es un problema. Hay variedades de tamaños diferentes.",
+    "sourceIds": [
+      "NC_SANSEVIERIA"
+    ],
+    "careSourceIds": [
+      "NC_SANSEVIERIA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "zamioculca",
+    "slug": "zamioculca",
+    "commonName": "Zamioculca",
+    "scientificName": "Zamioculcas zamiifolia",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_tolerates_low",
+    "waterProfile": "substantial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Dejá secar el sustrato antes de regar. La luz indirecta abundante favorece el crecimiento; evitá sol directo intenso.",
+    "sourceIds": [
+      "NC_ZAMIO"
+    ],
+    "careSourceIds": [
+      "NC_ZAMIO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "lazo-de-amor",
+    "slug": "lazo-de-amor",
+    "commonName": "Lazo de amor",
+    "scientificName": "Chlorophytum comosum",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_bright_medium",
+    "waterProfile": "even_moisture",
+    "frostProfile": "sensitive",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Apto para recipientes colgantes. Evitá sol fuerte y ajustá el riego cuando el crecimiento disminuye.",
+    "sourceIds": [
+      "NC_LAZO"
+    ],
+    "careSourceIds": [
+      "NC_LAZO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "gomero",
+    "slug": "gomero",
+    "commonName": "Gomero",
+    "scientificName": "Ficus elastica",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_bright",
+    "waterProfile": "partial_dry",
+    "frostProfile": "sensitive",
+    "maintenance": "medium",
+    "spaceClass": "large",
+    "tallOrTrained": false,
+    "practicalNote": "Reservá espacio para su crecimiento. Evitá cambios bruscos de ubicación, corrientes frías y exceso de agua.",
+    "sourceIds": [
+      "NC_GOMERO"
+    ],
+    "careSourceIds": [
+      "NC_GOMERO"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  },
+  {
+    "id": "aspidistra",
+    "slug": "aspidistra",
+    "commonName": "Aspidistra",
+    "scientificName": "Aspidistra elatior",
+    "aliases": [],
+    "identityNotes": [],
+    "category": "interior",
+    "environments": [
+      "interior"
+    ],
+    "lightProfile": "indoor_bright_medium",
+    "waterProfile": "partial_dry",
+    "frostProfile": "some_tolerance",
+    "maintenance": "low",
+    "spaceClass": "medium",
+    "tallOrTrained": false,
+    "practicalNote": "Tolera ambientes de menor luz natural. Evitá sol directo y el exceso de agua; su crecimiento es pausado.",
+    "sourceIds": [
+      "NC_ASPIDISTRA"
+    ],
+    "careSourceIds": [
+      "NC_ASPIDISTRA"
+    ],
+    "calendarRuleIds": [],
+    "editorialStatus": "starter_reference",
+    "editorialReviewedAt": null,
+    "compiledAt": "2026-10-06",
+    "nativeRangeStatus": "not_evaluated",
+    "petSafetyStatus": "not_evaluated",
+    "image": null,
+    "adultHeightCm": null,
+    "spreadCm": null,
+    "recommendedContainerLiters": null,
+    "plantingDepthCm": null,
+    "spacingCm": null,
+    "harvestDays": null,
+    "propagationNotes": null,
+    "localNativeRegions": [],
+    "specificToxicityEvidence": null,
+    "affiliateLink": null
+  }
+]

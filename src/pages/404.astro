@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<BaseLayout title="Página no encontrada | Patio Verde" description="La página que buscás no existe o cambió de dirección." noindex>
+  <div class="container not-found">
+    <p class="eyebrow">Error 404</p>
+    <h1>No encontramos esta página</h1>
+    <p class="lead">Puede que la dirección esté mal escrita o que la página haya cambiado. Probá buscando la planta:</p>
+    <form class="not-found__search" action="/plantas/" method="get" role="search">
+      <label for="q-404" class="label">Buscar una planta</label>
+      <div class="cluster">
+        <input id="q-404" name="q" type="search" placeholder="Ej.: lavanda, potus, tomate" />
+        <button class="btn btn--primary" type="submit"><Icon name="search" size={18} />Buscar</button>
+      </div>
+    </form>
+    <ul class="not-found__links">
+      <li><a href="/encontra-tu-planta/">Encontrá tu planta</a></li>
+      <li><a href="/plantas/">Todas las plantas</a></li>
+      <li><a href="/calendario/">Calendario</a></li>
+      <li><a href="/calculadora-de-sustrato/">Calculadora de sustrato</a></li>
+      <li><a href="/">Inicio</a></li>
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding-block: var(--space-7);
+  }
+
+  .not-found__search {
+    display: grid;
+    gap: var(--space-2);
+    max-width: 520px;
+    margin-bottom: var(--space-5);
+  }
+
+  .not-found__search .cluster {
+    flex-wrap: nowrap;
+  }
+
+  .not-found__search input {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .not-found__links {
+    display: grid;
+    gap: var(--space-2);
+  }
+</style>

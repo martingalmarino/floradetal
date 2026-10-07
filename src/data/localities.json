@@ -1,0 +1,15 @@
+[
+  { "id": "ciudad-autonoma-buenos-aires", "label": "Ciudad Autónoma de Buenos Aires", "coverage": "reference_temperate", "note": null },
+  { "id": "la-plata", "label": "La Plata, Buenos Aires", "coverage": "reference_temperate", "note": null },
+  { "id": "cordoba-capital", "label": "Córdoba Capital, Córdoba", "coverage": "reference_temperate", "note": "Referencia de clima templado. La altura y las heladas pueden cambiar las fechas, especialmente en zonas serranas y periurbanas." },
+  { "id": "rio-cuarto", "label": "Río Cuarto, Córdoba", "coverage": "reference_temperate", "note": "Referencia de clima templado. La altura y las heladas pueden cambiar las fechas, especialmente en zonas serranas y periurbanas." },
+  { "id": "rosario", "label": "Rosario, Santa Fe", "coverage": "reference_temperate", "note": null },
+  { "id": "santa-fe", "label": "Santa Fe, Santa Fe", "coverage": "reference_temperate", "note": null },
+  { "id": "mendoza", "label": "Mendoza, Mendoza", "coverage": "general_only", "note": null },
+  { "id": "san-miguel-de-tucuman", "label": "San Miguel de Tucumán, Tucumán", "coverage": "general_only", "note": null },
+  { "id": "posadas", "label": "Posadas, Misiones", "coverage": "general_only", "note": null },
+  { "id": "neuquen", "label": "Neuquén, Neuquén", "coverage": "general_only", "note": null },
+  { "id": "bariloche", "label": "San Carlos de Bariloche, Río Negro", "coverage": "general_only", "note": null },
+  { "id": "salta", "label": "Salta, Salta", "coverage": "general_only", "note": null },
+  { "id": "otra", "label": "Otra localidad", "coverage": "general_only", "note": null }
+]

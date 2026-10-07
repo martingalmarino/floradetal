@@ -1,0 +1,58 @@
+---
+import { categoryIllustration } from '../lib/illustrations';
+import { CATEGORY_LABEL } from '../lib/labels';
+import type { Plant } from '../lib/schemas';
+
+interface Props {
+  plant: Plant;
+  eager?: boolean;
+}
+
+const { plant, eager = false } = Astro.props;
+const illustration = categoryIllustration(plant.category, `Ilustración de la categoría ${CATEGORY_LABEL[plant.category]}`);
+---
+
+<div class="plant-card__media" data-image-frame>
+  {
+    plant.image ? (
+      <>
+        <img
+          src={plant.image.src}
+          width={plant.image.width}
+          height={plant.image.height}
+          alt={plant.image.alt}
+          loading={eager ? 'eager' : 'lazy'}
+          decoding="async"
+          data-fallback-image
+        />
+        <template data-fallback-template set:html={illustration} />
+      </>
+    ) : (
+      <>
+        <Fragment set:html={illustration} />
+        <span class="illustration-tag">Ilustración</span>
+      </>
+    )
+  }
+</div>
+
+{
+  plant.image && (
+    <script>
+      for (const img of document.querySelectorAll<HTMLImageElement>('img[data-fallback-image]')) {
+        const swap = () => {
+          const frame = img.closest('[data-image-frame]');
+          const template = frame?.querySelector<HTMLTemplateElement>('template[data-fallback-template]');
+          if (!frame || !template) return;
+          img.replaceWith(template.content.cloneNode(true));
+          const tag = document.createElement('span');
+          tag.className = 'illustration-tag';
+          tag.textContent = 'Ilustración';
+          frame.append(tag);
+        };
+        if (img.complete && img.naturalWidth === 0) swap();
+        else img.addEventListener('error', swap, { once: true });
+      }
+    </script>
+  )
+}

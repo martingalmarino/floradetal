@@ -1,0 +1,32 @@
+{
+  "name": "patio-verde",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Patio Verde — MVP de jardinería para Argentina (sitio estático Astro).",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "build:production": "node scripts/check-release.mjs && PV_REQUIRE_SITE=1 astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "validate:data": "vitest run tests/data.test.ts",
+    "check:links": "node scripts/check-links.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.3.6"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
+    "typescript": "^6.0.0",
+    "vitest": "^5.0.3"
+  }
+}

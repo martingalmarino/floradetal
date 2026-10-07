@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import SourceLinks from '../components/SourceLinks.astro';
+import { calendar, careRules, getPlantById, getSource, localities, plants } from '../lib/data';
+import { careRulesForPlant, careSourceIds, describeRule, groupForRule, REFERENCE_LABEL } from '../lib/calendar';
+import { CALENDAR_GROUP_LABEL, METHOD_LABEL, MONTH_NAMES, capitalize, formatMonthList } from '../lib/labels';
+import { plantPath } from '../lib/site';
+
+const rulesSorted = [...calendar.rules].sort(
+  (a, b) => (a.months[0] ?? 0) - (b.months[0] ?? 0) || a.plantId.localeCompare(b.plantId),
+);
+const careWithPlants = careRules.map((rule) => ({
+  rule,
+  plants: plants.filter((p) => careRulesForPlant(p, careRules, calendar.rules).some((r) => r.id === rule.id)),
+}));
+const careSources = [...new Set(careWithPlants.flatMap(({ rule, plants: list }) => list.flatMap((p) => careSourceIds(rule, p))))];
+---
+
+<BaseLayout
+  title="Calendario de huerta orientativo | Patio Verde"
+  description="Ventanas de siembra, almácigo y trasplante de referencia para clima templado, con sus condiciones, y revisiones de cuidado para cualquier mes."
+>
+  <div class="container">
+    <header class="page-header">
+      <p class="eyebrow">Calendario</p>
+      <h1>{REFERENCE_LABEL}</h1>
+      <p class="lead">
+        Las fechas cambian según la localidad, las heladas, la variedad y el lugar de cultivo. Tomalas como referencia y
+        contrastalas con un vivero o una agencia de INTA de tu zona.
+      </p>
+      <p class="small muted">
+        Es un punto de partida útil sobre todo en zonas templadas de llanura. No es un calendario verificado para cada ciudad
+        argentina ni un pronóstico del tiempo.
+      </p>
+    </header>
+
+    <section class="card planner no-print" aria-labelledby="planner-title" data-planner hidden>
+      <h2 id="planner-title" class="visually-hidden">Planificá tu mes</h2>
+      <div class="planner__grid">
+        <div class="field">
+          <label for="cal-locality">Tu zona</label>
+          <select id="cal-locality" data-cal-locality>
+            <option value="">Sin elegir (ver la referencia)</option>
+            {localities.map((l) => <option value={l.id}>{l.label}</option>)}
+          </select>
+        </div>
+        <div class="field">
+          <label for="cal-month">Mes de planificación</label>
+          <div class="month-picker">
+            <button type="button" class="btn btn--ghost month-picker__arrow" data-cal-prev aria-label="Mes anterior">
+              <Icon name="arrow-left" size={18} />
+            </button>
+            <select id="cal-month" data-cal-month>
+              {MONTH_NAMES.map((name, index) => <option value={index + 1}>{capitalize(name)}</option>)}
+            </select>
+            <span class="month-picker__year" data-cal-year aria-live="polite"></span>
+            <button type="button" class="btn btn--ghost month-picker__arrow" data-cal-next aria-label="Mes siguiente">
+              <Icon name="arrow-right" size={18} />
+            </button>
+          </div>
+          <p class="hint">Es el mes que querés planificar, no un pronóstico del tiempo.</p>
+        </div>
+      </div>
+      <fieldset class="field planner__filters">
+        <legend>Mostrar</legend>
+        <div class="segmented" data-cal-filter>
+          <label><input type="radio" name="cal-filter" value="todas" checked /> Todo</label>
+          <label><input type="radio" name="cal-filter" value="almacigos" /> {CALENDAR_GROUP_LABEL.almacigos}</label>
+          <label><input type="radio" name="cal-filter" value="siembra_directa" /> {CALENDAR_GROUP_LABEL.siembra_directa}</label>
+          <label><input type="radio" name="cal-filter" value="trasplantes" /> {CALENDAR_GROUP_LABEL.trasplantes}</label>
+          <label><input type="radio" name="cal-filter" value="cuidados" /> {CALENDAR_GROUP_LABEL.cuidados}</label>
+        </div>
+      </fieldset>
+      <label class="checkbox-inline">
+        <input type="checkbox" data-cal-mine />
+        Solo mis plantas
+      </label>
+      <p class="small muted" data-cal-mine-hint hidden>
+        Todavía no guardaste plantas. Podés hacerlo desde cualquier ficha o desde <a href="/encontra-tu-planta/">Encontrá tu planta</a>.
+      </p>
+    </section>
+
+    <div data-cal-coverage aria-live="polite"></div>
+    <section class="planner-output" data-cal-output aria-live="polite" aria-labelledby="output-title" hidden>
+      <h2 id="output-title" data-cal-output-title>Tareas del mes</h2>
+      <div data-cal-groups></div>
+    </section>
+
+    <section class="section--tight reference" aria-labelledby="ventanas">
+      <h2 id="ventanas">Ventanas de referencia</h2>
+      <p>
+        Todas las ventanas corresponden a la referencia de clima templado y tienen confianza orientativa. Las condiciones son
+        parte de la indicación: un almácigo protegido no equivale a sembrar al aire libre.
+      </p>
+      <div class="table-wrap">
+        <table>
+          <caption class="visually-hidden">Ventanas de referencia del calendario orientativo para clima templado</caption>
+          <thead>
+            <tr>
+              <th scope="col">Planta</th>
+              <th scope="col">Tarea</th>
+              <th scope="col">Meses</th>
+              <th scope="col">Condición</th>
+              <th scope="col">Fuente</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              rulesSorted.map((rule) => (
+                <tr>
+                  <td><a href={plantPath(rule.plantId)}>{getPlantById(rule.plantId).commonName}</a></td>
+                  <td>
+                    {describeRule(rule)}
+                    <br />
+                    <span class="muted">{CALENDAR_GROUP_LABEL[groupForRule(rule)]} · {METHOD_LABEL[rule.method]}</span>
+                  </td>
+                  <td>{capitalize(formatMonthList(rule.months))}</td>
+                  <td>{rule.condition}</td>
+                  <td>{getSource(rule.sourceId).publisher}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted">No incluimos un cálculo de fechas de cosecha. Estas no son las únicas fechas posibles.</p>
+    </section>
+
+    <section class="section--tight" aria-labelledby="orientacion">
+      <h2 id="orientacion">Orientación general</h2>
+      <p>Para estas hortalizas no confirmamos meses: la variedad y la zona definen la época.</p>
+      <ul class="grid grid--2 notes">
+        {
+          calendar.generalNotes.map((note) => (
+            <li class="card">
+              <h3><a href={plantPath(note.plantId)}>{getPlantById(note.plantId).commonName}</a></h3>
+              <p>{note.text}</p>
+              <p class="small muted">Fuentes: {note.sourceIds.map((id) => getSource(id).title).join('; ')}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section--tight" aria-labelledby="cualquier-mes">
+      <h2 id="cualquier-mes">En cualquier mes, según el estado de tu planta</h2>
+      <p>
+        Son revisiones condicionales, no una frecuencia de riego ni tareas que haya que hacer exactamente una vez por mes. Para
+        flores, plantas de interior y aromáticas perennes no damos fechas genéricas de poda ni de trasplante.
+      </p>
+      <ul class="grid grid--2 notes">
+        {
+          careWithPlants.map(({ rule, plants: list }) => (
+            <li class="card">
+              <h3>{rule.label}</h3>
+              <p>{rule.text}</p>
+              <p class="small muted">
+                {rule.appliesTo.inContainer
+                  ? 'Para cualquier planta en maceta.'
+                  : `Aplica a: ${list.map((p) => p.commonName).join(', ')}.`}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+      <details class="card sources-details">
+        <summary>Fuentes de las revisiones de cuidado</summary>
+        <SourceLinks ids={careSources} />
+      </details>
+    </section>
+
+    <section class="section--tight" aria-labelledby="fuentes-cal">
+      <h2 id="fuentes-cal">Fuentes y fuentes locales</h2>
+      <p>
+        La referencia se basa en publicaciones del INTA. Las condiciones regionales cambian el manejo de la huerta; por
+        ejemplo, el INTA publica pautas específicas para la Patagonia cordillerana.
+      </p>
+      <SourceLinks ids={['INTA_CAL', 'INTA_PLAN', 'INTA_OTONO', 'INTA_INVIERNO', 'INTA_PATAGONIA', 'INTA_HUERTAS']} showScope />
+    </section>
+  </div>
+</BaseLayout>
+
+<script>
+  import '../scripts/calendar-page';
+</script>
+
+<style>
+  .planner {
+    display: grid;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+
+  .planner__grid {
+    display: grid;
+    gap: var(--space-4);
+    align-items: start;
+  }
+
+  [data-cal-coverage]:not(:empty) {
+    margin-bottom: var(--space-5);
+  }
+
+  @media (min-width: 760px) {
+    .planner__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .month-picker {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+  }
+
+  .month-picker select {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .month-picker__arrow {
+    width: var(--tap);
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .month-picker__year {
+    font-weight: 700;
+    color: var(--color-forest);
+    min-width: 3rem;
+    text-align: center;
+  }
+
+  .segmented {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .segmented label {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: var(--tap);
+    padding: 0 var(--space-3);
+    border: 1.5px solid var(--color-border-strong);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: var(--text-sm);
+    cursor: pointer;
+    background: var(--color-surface);
+  }
+
+  .segmented label:has(input:checked) {
+    background: var(--color-sage);
+    border-color: var(--color-forest);
+    color: var(--color-forest);
+  }
+
+  .segmented input {
+    accent-color: var(--color-forest);
+  }
+
+  .planner-output {
+    margin-bottom: var(--space-7);
+  }
+
+  .reference h2,
+  .notes h3 {
+    margin-top: 0;
+  }
+
+  .notes {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0;
+  }
+
+  .notes h3 {
+    font-size: var(--text-lg);
+  }
+
+  .sources-details summary {
+    cursor: pointer;
+    font-weight: 700;
+    color: var(--color-forest);
+    min-height: var(--tap);
+    display: flex;
+    align-items: center;
+  }
+</style>

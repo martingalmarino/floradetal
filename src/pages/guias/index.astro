@@ -1,0 +1,80 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/Icon.astro';
+import type { IconName } from '../../lib/icons';
+
+const guides = (await getCollection('guides')).sort((a, b) => a.data.order - b.data.order);
+const ICONS: IconName[] = ['sun', 'droplet', 'pot'];
+---
+
+<BaseLayout
+  title="Guías prácticas de jardinería | Patio Verde"
+  description="Tres guías breves para empezar: cómo medir la luz, cómo saber si una planta necesita riego y cómo elegir una maceta y calcular sustrato."
+>
+  <div class="container">
+    <header class="page-header">
+      <p class="eyebrow">Aprender</p>
+      <h1>Guías prácticas</h1>
+      <p class="lead">Lo básico para elegir bien y cuidar mejor, con enlaces a las herramientas y a las fuentes.</p>
+    </header>
+    <ul class="grid grid--3 guides">
+      {
+        guides.map((guide, index) => (
+          <li>
+            <a class="card guide-card" href={`/guias/${guide.id}/`}>
+              <span class="guide-card__icon" aria-hidden="true">
+                <Icon name={ICONS[index] ?? 'book'} size={26} />
+              </span>
+              <h2 class="guide-card__title">{guide.data.title}</h2>
+              <p class="small muted">{guide.data.description}</p>
+              <span class="guide-card__more">Leer la guía</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</BaseLayout>
+
+<style>
+  .guides {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .guide-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .guide-card:hover {
+    border-color: var(--color-forest);
+    color: inherit;
+  }
+
+  .guide-card__icon {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-sm);
+    background: var(--color-sage-200);
+    color: var(--color-forest);
+    margin-bottom: var(--space-3);
+  }
+
+  .guide-card__title {
+    font-size: var(--text-lg);
+  }
+
+  .guide-card__more {
+    margin-top: auto;
+    font-weight: 700;
+    color: var(--color-terracotta-text);
+  }
+</style>

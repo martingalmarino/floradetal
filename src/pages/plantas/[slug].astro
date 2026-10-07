@@ -1,0 +1,407 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import Icon from '../../components/Icon.astro';
+import PlantCard from '../../components/PlantCard.astro';
+import PlantImage from '../../components/PlantImage.astro';
+import SaveButton from '../../components/SaveButton.astro';
+import ShareButtons from '../../components/ShareButtons.astro';
+import SourceLinks from '../../components/SourceLinks.astro';
+import { calendar, careRules, getSource, plants } from '../../lib/data';
+import {
+  CATEGORY_LABEL,
+  ENVIRONMENT_LABEL,
+  FROST_DETAIL,
+  FROST_LABEL,
+  LIGHT_DETAIL,
+  LIGHT_LABEL,
+  MAINTENANCE_LABEL,
+  SPACE_LABEL,
+  WATER_DETAIL,
+  WATER_LABEL,
+  formatMonthList,
+} from '../../lib/labels';
+import { careRulesForPlant, careSourceIds, describeRule, REFERENCE_LABEL } from '../../lib/calendar';
+import { plantDescription, plantIntro, relatedPlants } from '../../lib/plant-copy';
+import { plantPath, SITE_NAME } from '../../lib/site';
+import type { Plant } from '../../lib/schemas';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('plants');
+  return entries.map((entry) => ({ params: { slug: entry.data.slug }, props: { plant: entry.data } }));
+}
+
+interface Props {
+  plant: Plant;
+}
+
+const { plant } = Astro.props;
+const rules = calendar.rules.filter((r) => r.plantId === plant.id);
+const generalNote = calendar.generalNotes.find((n) => n.plantId === plant.id) ?? null;
+const care = careRulesForPlant(plant, careRules, calendar.rules);
+const related = relatedPlants(plant, plants);
+const isIndoor = plant.environments.includes('interior');
+const allSourceIds = [
+  ...plant.sourceIds,
+  ...rules.map((r) => r.sourceId),
+  ...(generalNote?.sourceIds ?? []),
+  ...care.flatMap((rule) => careSourceIds(rule, plant)),
+];
+const toxicitySource = plant.specificToxicityEvidence ? getSource(plant.specificToxicityEvidence.sourceId) : null;
+const path = plantPath(plant.slug);
+const title = `${plant.commonName}: luz, riego y cuidados | ${SITE_NAME}`;
+---
+
+<BaseLayout
+  title={title}
+  description={plantDescription(plant)}
+  ogType="article"
+  breadcrumbs={[
+    { name: 'Inicio', path: '/' },
+    { name: 'Plantas', path: '/plantas/' },
+    { name: plant.commonName, path },
+  ]}
+>
+  <article class="container plant-detail" data-plant-view={plant.id}>
+    <Breadcrumbs
+      items={[
+        { name: 'Inicio', path: '/' },
+        { name: 'Plantas', path: '/plantas/' },
+        { name: plant.commonName, path },
+      ]}
+    />
+
+    <header class="detail-header">
+      <div class="detail-header__copy">
+        <p class="eyebrow">{CATEGORY_LABEL[plant.category]}</p>
+        <h1>{plant.commonName}</h1>
+        <p class="detail-sci"><i>{plant.scientificName}</i></p>
+        {plant.aliases.length > 0 && <p class="small muted">También buscada como: {plant.aliases.join(', ')}.</p>}
+        <ul class="chips" aria-label="Resumen">
+          <li class="chip"><Icon name={isIndoor ? 'window' : 'sun'} size={15} />{LIGHT_LABEL[plant.lightProfile]}</li>
+          <li class="chip"><Icon name="droplet" size={15} />{WATER_LABEL[plant.waterProfile]}</li>
+          <li class="chip"><Icon name="clock" size={15} />{MAINTENANCE_LABEL[plant.maintenance]}</li>
+          <li class="chip"><Icon name="ruler" size={15} />{SPACE_LABEL[plant.spaceClass]}</li>
+          {!isIndoor && <li class="chip chip--warm"><Icon name="snowflake" size={15} />{FROST_LABEL[plant.frostProfile]}</li>}
+        </ul>
+        <p class="detail-intro">{plantIntro(plant)}</p>
+        {plant.identityNotes.map((note) => <p class="callout"><Icon name="info" />{note}</p>)}
+        <div class="btn-row detail-actions no-print">
+          <SaveButton plantId={plant.id} plantName={plant.commonName} />
+        </div>
+        <ShareButtons
+          title={`${plant.commonName} | ${SITE_NAME}`}
+          text={`${plant.commonName}: luz, riego y cuidados.`}
+          path={path}
+        />
+      </div>
+      <div class="detail-header__media">
+        <PlantImage plant={plant} eager />
+      </div>
+    </header>
+
+    <div class="detail-body">
+      <div class="detail-main">
+        <section aria-labelledby="ambiente">
+          <h2 id="ambiente">Luz y ambiente</h2>
+          <p>{LIGHT_DETAIL[plant.lightProfile]}</p>
+          <p>
+            <strong>Ambiente en esta guía:</strong>
+            {plant.environments.map((e) => ENVIRONMENT_LABEL[e]).join(', ')}. <strong>Espacio:</strong>
+            {SPACE_LABEL[plant.spaceClass].toLocaleLowerCase('es-AR')}.
+          </p>
+          {!isIndoor && <p><strong>Frío:</strong> {FROST_DETAIL[plant.frostProfile]}</p>}
+          <p class="small muted">
+            Las horas de sol son una guía práctica, no un límite biológico exacto: la necesidad de luz cambia con la estación
+            y la aclimatación. <a href="/guias/como-medir-la-luz-para-tus-plantas/">Cómo medir la luz</a>.
+          </p>
+        </section>
+
+        <section aria-labelledby="riego">
+          <h2 id="riego">Riego</h2>
+          <p>{WATER_DETAIL[plant.waterProfile]}</p>
+          <p class="small muted">
+            No hay una frecuencia fija: depende de la maceta, el sustrato, la estación y el lugar. Revisá el sustrato antes de
+            regar. <a href="/guias/como-saber-si-una-planta-necesita-riego/">Cómo saber si necesita riego</a>.
+          </p>
+        </section>
+
+        <section aria-labelledby="nota">
+          <h2 id="nota">Nota práctica</h2>
+          <p>{plant.practicalNote}</p>
+        </section>
+
+        <section aria-labelledby="cuidados">
+          <h2 id="cuidados">Revisiones de cuidado</h2>
+          <p class="small muted">Son controles para hacer según el estado de la planta, no tareas de calendario fijo.</p>
+          <ul class="care-list">
+            {
+              care.map((rule) => (
+                <li>
+                  <Icon name="check-circle" />
+                  <span>
+                    <strong>{rule.label}.</strong> {rule.text}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="small">Guardala en <a href="/mi-jardin/">Mi jardín</a> para marcar “Ya lo revisé” y llevar tu historial.</p>
+        </section>
+
+        <section aria-labelledby="calendario">
+          <h2 id="calendario">Calendario</h2>
+          {
+            rules.length > 0 && (
+              <>
+                <p class="callout">
+                  <Icon name="calendar" />
+                  <span>
+                    <strong>{REFERENCE_LABEL}.</strong> Las fechas cambian según la localidad, las heladas, la variedad y el
+                    lugar de cultivo. Tomalas como referencia y contrastalas con un vivero o una agencia de INTA de tu zona.
+                  </span>
+                </p>
+                <ul class="rule-list">
+                  {rules.map((rule) => (
+                    <li class="card">
+                      <p class="rule-list__title">{describeRule(rule)}</p>
+                      <p class="small">
+                        <strong>Meses de referencia:</strong> {formatMonthList(rule.months)}
+                      </p>
+                      <p class="small rule-list__condition">
+                        <Icon name="alert" size={16} /> {rule.condition}
+                      </p>
+                      <p class="small muted">Fuente: {getSource(rule.sourceId).title}</p>
+                    </li>
+                  ))}
+                </ul>
+                <p><a href="/calendario/">Abrir el calendario completo</a></p>
+              </>
+            )
+          }
+          {
+            generalNote && (
+              <div class="card card--sage">
+                <p class="label">Orientación general</p>
+                <p>{generalNote.text}</p>
+                <p class="small muted">Sin meses confirmados en esta guía. Consultá la época de siembra para tu zona.</p>
+              </div>
+            )
+          }
+          {
+            rules.length === 0 && !generalNote && (
+              <p>
+                No incluimos fechas de siembra o plantación para esta planta. Consultá la época adecuada en un vivero o una
+                agencia de INTA de tu zona.
+              </p>
+            )
+          }
+        </section>
+
+        <section aria-labelledby="mascotas">
+          <h2 id="mascotas">Mascotas</h2>
+          {
+            plant.specificToxicityEvidence && toxicitySource ? (
+              <p>
+                {plant.specificToxicityEvidence.summary} (Fuente: <a href={toxicitySource.url}>{toxicitySource.title}</a>)
+              </p>
+            ) : (
+              <p>
+                La seguridad para mascotas <strong>no fue evaluada</strong> en esta ficha. Que no figure información no
+                significa que sea segura: consultá con tu veterinario.
+              </p>
+            )
+          }
+        </section>
+
+        <section aria-labelledby="fuentes">
+          <h2 id="fuentes">Fuentes</h2>
+          <SourceLinks ids={allSourceIds} />
+          <p class="small muted">
+            Las referencias hortícolas extranjeras respaldan características generales de la planta; sus meses y zonas de
+            rusticidad no se aplican a la Argentina.
+          </p>
+        </section>
+      </div>
+
+      <aside class="detail-aside" aria-label="Sobre esta ficha">
+        <div class="card card--sage">
+          <p class="label">Sobre esta ficha</p>
+          <p class="small">
+            Ficha de referencia inicial, compilada el 6 de octubre de 2026 a partir de las fuentes indicadas. No fue revisada
+            por un profesional de la horticultura.
+          </p>
+          <p class="small">
+            Origen nativo: no evaluado. <a href="/metodologia-y-fuentes/">Cómo armamos las fichas</a>.
+          </p>
+        </div>
+      </aside>
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="related" aria-labelledby="relacionadas">
+          <h2 id="relacionadas">Plantas relacionadas</h2>
+          <ul class="grid grid--3 related__list">
+            {related.map((other) => (
+              <li>
+                <PlantCard plant={other} />
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<script>
+  import { track } from '../../lib/analytics';
+  const view = document.querySelector<HTMLElement>('[data-plant-view]');
+  if (view?.dataset.plantView) track('plant_view', { plant: view.dataset.plantView });
+</script>
+
+<style>
+  .plant-detail {
+    padding-top: var(--space-5);
+  }
+
+  .detail-header {
+    display: grid;
+    gap: var(--space-5);
+    align-items: start;
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  @media (min-width: 900px) {
+    .detail-header {
+      grid-template-columns: 1.3fr 1fr;
+    }
+  }
+
+  .detail-header h1 {
+    margin-bottom: var(--space-1);
+  }
+
+  .detail-sci {
+    font-size: var(--text-lg);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-2);
+  }
+
+  .detail-header .chips {
+    margin: var(--space-4) 0;
+  }
+
+  .detail-intro {
+    font-size: var(--text-lg);
+  }
+
+  .detail-actions {
+    margin: var(--space-4) 0 var(--space-3);
+  }
+
+  .detail-header__media :global(.plant-card__media) {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid #cad8c1;
+  }
+
+  .detail-header .callout {
+    margin-bottom: var(--space-3);
+  }
+
+  .detail-body {
+    display: grid;
+    gap: var(--space-6);
+    padding-top: var(--space-6);
+  }
+
+  @media (min-width: 960px) {
+    .detail-body {
+      grid-template-columns: minmax(0, 1fr) 300px;
+    }
+    .detail-aside {
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+    }
+  }
+
+  .detail-main {
+    max-width: var(--prose-max);
+  }
+
+  .detail-main section {
+    margin-bottom: var(--space-6);
+  }
+
+  .detail-main h2 {
+    font-size: var(--text-xl);
+  }
+
+  .care-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+  }
+
+  .care-list li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+
+  .care-list :global(svg) {
+    color: var(--color-forest);
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .rule-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3);
+    margin: var(--space-4) 0;
+  }
+
+  .rule-list .card {
+    padding: var(--space-4);
+  }
+
+  .rule-list p {
+    margin-bottom: var(--space-2);
+  }
+
+  .rule-list__title {
+    font-weight: 700;
+    color: var(--color-forest);
+  }
+
+  .rule-list__condition {
+    display: flex;
+    gap: var(--space-2);
+    color: var(--color-terracotta-text);
+    font-weight: 600;
+  }
+
+  .rule-list__condition :global(svg) {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+
+  .related {
+    padding-top: var(--space-6);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .related__list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-4) 0 0;
+  }
+</style>

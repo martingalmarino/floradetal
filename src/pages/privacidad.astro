@@ -1,0 +1,73 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { STORAGE_KEYS } from '../lib/storage';
+
+const crumbs = [
+  { name: 'Inicio', path: '/' },
+  { name: 'Privacidad', path: '/privacidad/' },
+];
+---
+
+<BaseLayout
+  title="Privacidad | Patio Verde"
+  description="Qué datos guarda este sitio en tu dispositivo, qué se comparte cuando usás los botones de compartir y por qué no hay cuentas ni analítica activa."
+  breadcrumbs={crumbs}
+>
+  <div class="container">
+    <Breadcrumbs items={crumbs} />
+    <header class="page-header">
+      <p class="eyebrow">Tus datos</p>
+      <h1>Privacidad</h1>
+      <p class="lead">Este sitio funciona sin cuentas. Lo que guardás queda en tu navegador, en este dispositivo.</p>
+    </header>
+    <div class="prose">
+      <h2>Qué se guarda y dónde</h2>
+      <p>
+        Usamos el almacenamiento local de tu navegador (<code>localStorage</code>) para que tus elecciones sigan ahí cuando
+        volvés. Nada de esto se envía a un servidor:
+      </p>
+      <ul>
+        <li><strong>Tus respuestas del selector</strong>, incluida la localidad que elegiste de la lista (<code>{STORAGE_KEYS.profile}</code>).</li>
+        <li><strong>Las plantas que guardás</strong> en Mi jardín (<code>{STORAGE_KEYS.favorites}</code>).</li>
+        <li><strong>Tus notas y fechas de revisión</strong>, como texto plano (<code>{STORAGE_KEYS.notes}</code>).</li>
+        <li><strong>Las revisiones y tareas que marcás</strong> como hechas, con su mes (<code>{STORAGE_KEYS.checks}</code>).</li>
+        <li>
+          <strong>El mes que elegiste</strong> en el calendario, solo mientras dure tu sesión de navegación
+          (<code>sessionStorage</code>, <code>{STORAGE_KEYS.calendarPeriod}</code>).
+        </li>
+      </ul>
+      <p>
+        No pedimos nombre, correo, teléfono ni dirección, y no usamos la ubicación de tu dispositivo. Los datos no se
+        sincronizan entre dispositivos: si usás otro navegador o borrás los datos de navegación, no vas a verlos.
+      </p>
+      <p>
+        Podés borrar todo desde <a href="/mi-jardin/">Mi jardín</a> con el botón “Borrar mis datos”, o desde la configuración
+        de tu navegador. Si tu navegador no permite guardar datos, el sitio sigue funcionando, pero los cambios se pierden al
+        cerrar o recargar la página.
+      </p>
+
+      <h2>Compartir</h2>
+      <p>
+        Los botones de compartir solo actúan cuando los tocás. Comparten el nombre de la planta y el enlace público de su
+        ficha; nunca tus notas ni tu localidad. El botón de WhatsApp abre la aplicación con el mensaje listo para que vos
+        decidas si enviarlo. Al usar WhatsApp o el menú de compartir de tu dispositivo, se aplican las políticas de esos
+        servicios.
+      </p>
+
+      <h2>Analítica y publicidad</h2>
+      <p>
+        No hay analítica activa, publicidad ni enlaces de afiliados. El código incluye un punto de conexión opcional para
+        medir el uso de forma agregada, pero está desactivado y no envía ningún evento. Si en el futuro se activa un proveedor,
+        esta página se va a actualizar antes, indicando cuál es y qué datos recibe; nunca incluirá tus notas, tu dirección ni
+        textos que escribas.
+      </p>
+
+      <h2>Enlaces externos</h2>
+      <p>
+        Las fichas enlazan a fuentes del INTA y de otras instituciones. Al abrirlas, salís de este sitio y se aplican sus
+        propias políticas.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

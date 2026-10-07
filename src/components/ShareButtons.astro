@@ -1,0 +1,22 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  title: string;
+  text: string;
+  path: string;
+}
+
+const { title, text, path } = Astro.props;
+---
+
+<div class="btn-row no-print" role="group" aria-label="Compartir">
+  <button type="button" class="btn btn--ghost btn--small" data-share="native" data-share-title={title} data-share-text={text} data-share-url={path}>
+    <Icon name="share" size={18} />
+    Compartir
+  </button>
+  <button type="button" class="btn btn--ghost btn--small" data-share="whatsapp" data-share-title={title} data-share-text={text} data-share-url={path}>
+    <Icon name="external" size={18} />
+    WhatsApp
+  </button>
+</div>

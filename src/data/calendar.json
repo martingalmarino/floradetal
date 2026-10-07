@@ -1,0 +1,32 @@
+{
+  "coverages": [
+    {
+      "id": "temperate_reference",
+      "label": "Calendario orientativo para clima templado",
+      "confidence": "reference_only",
+      "description": "Ventanas de referencia seleccionadas de publicaciones del INTA, útiles como punto de partida en zonas templadas de llanura. No es un calendario verificado para cada localidad argentina."
+    }
+  ],
+  "rules": [
+    { "id": "tomate-iniciar-almacigo", "plantId": "tomate", "actionType": "iniciar_almacigo", "months": [9, 10], "method": "almacigo_protegido", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Mantener protección térmica; el mes por sí solo no asegura temperatura de germinación.", "displayLabel": "Iniciar almácigo protegido de tomate" },
+    { "id": "tomate-trasplantar", "plantId": "tomate", "actionType": "trasplantar", "months": [10, 11], "method": "exterior", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Solo con plantines preparados y cuando haya pasado el riesgo local de heladas.", "displayLabel": "Trasplantar tomate al exterior" },
+    { "id": "morron-iniciar-almacigo", "plantId": "morron", "actionType": "iniciar_almacigo", "months": [7, 8], "method": "almacigo_protegido", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Requiere condiciones térmicas adecuadas; no equivale a sembrar afuera en invierno.", "displayLabel": "Iniciar almácigo protegido de morrón" },
+    { "id": "morron-trasplantar", "plantId": "morron", "actionType": "trasplantar", "months": [10], "method": "exterior", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Solo sin riesgo local de heladas y con temperaturas apropiadas.", "displayLabel": "Trasplantar morrón al exterior" },
+    { "id": "albahaca-iniciar-almacigo", "plantId": "albahaca", "actionType": "iniciar_almacigo", "months": [8, 9], "method": "almacigo_protegido", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Proteger del frío.", "displayLabel": "Iniciar almácigo protegido de albahaca" },
+    { "id": "albahaca-trasplantar", "plantId": "albahaca", "actionType": "trasplantar", "months": [10, 11], "method": "exterior", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Evitar heladas y frío intenso.", "displayLabel": "Trasplantar albahaca al exterior" },
+    { "id": "ajo-plantar-dientes", "plantId": "ajo", "actionType": "plantar_dientes", "months": [3, 4], "method": "directa", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Elegir material y variedad adecuados a la zona.", "displayLabel": "Plantar dientes de ajo" },
+    { "id": "arveja-sembrar", "plantId": "arveja", "actionType": "sembrar", "months": [6, 7, 8], "method": "directa", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Es una ventana de referencia; comprobar variedad y condiciones locales.", "displayLabel": "Sembrar arveja" },
+    { "id": "chaucha-sembrar", "plantId": "chaucha", "actionType": "sembrar", "months": [10, 11, 12, 1], "method": "directa", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_CAL", "condition": "Solo con suelo templado y sin riesgo de heladas; prever tutor si es de rama.", "displayLabel": "Sembrar chaucha" },
+    { "id": "acelga-sembrar", "plantId": "acelga", "actionType": "sembrar", "months": [2, 3, 4, 5, 6, 8, 9, 10, 11, 12], "method": "directa_o_almacigo", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_PLAN", "condition": "Ventana orientativa; ajustar variedad, calor y frío del sitio.", "displayLabel": "Sembrar acelga" },
+    { "id": "espinaca-sembrar", "plantId": "espinaca", "actionType": "sembrar", "months": [2, 3, 4, 5, 6], "method": "directa", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_PLAN", "condition": "Priorizar condiciones frescas; puede adelantarse a flor con calor.", "displayLabel": "Sembrar espinaca" },
+    { "id": "perejil-sembrar", "plantId": "perejil", "actionType": "sembrar", "months": [2, 3, 9, 10], "method": "directa", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_PLAN", "condition": "Es una ventana de referencia; la germinación puede demorar.", "displayLabel": "Sembrar perejil" },
+    { "id": "rabanito-sembrar", "plantId": "rabanito", "actionType": "sembrar", "months": [2, 3, 4, 5, 6, 9, 10, 11, 12], "method": "directa", "coverageId": "temperate_reference", "confidence": "reference_only", "sourceId": "INTA_PLAN", "condition": "Evitar extremos térmicos y mantener humedad regular.", "displayLabel": "Sembrar rabanito" }
+  ],
+  "generalNotes": [
+    { "id": "lechuga-orientacion", "plantId": "lechuga", "text": "Puede cultivarse en distintas épocas con variedades apropiadas; cuidá especialmente el calor.", "sourceIds": ["NC_LECHUGA", "INTA_OTONO"] },
+    { "id": "zanahoria-orientacion", "plantId": "zanahoria", "text": "La variedad y la región determinan la ventana de siembra.", "sourceIds": ["INTA_OTONO", "NC_ZANAHORIA"] },
+    { "id": "remolacha-orientacion", "plantId": "remolacha", "text": "Consultá la siembra de temporada fresca para tu zona.", "sourceIds": ["INTA_OTONO"] },
+    { "id": "rucula-orientacion", "plantId": "rucula", "text": "Preferí condiciones frescas; el calor puede acelerar la floración.", "sourceIds": ["NC_RUCULA"] }
+  ],
+  "localOverrides": []
+}

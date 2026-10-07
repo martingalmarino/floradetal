@@ -1,0 +1,87 @@
+---
+import { NAV_ITEMS, SITE_NAME } from '../lib/site';
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="site-footer__brand">{SITE_NAME}</p>
+      <p class="small">
+        Guía práctica para jardinería hogareña en Argentina. La información es orientativa: contrastala con un vivero o una
+        agencia de INTA de tu zona. Sin afiliación institucional.
+      </p>
+    </div>
+    <nav aria-label="Herramientas">
+      <p class="site-footer__title">Herramientas</p>
+      <ul>
+        {NAV_ITEMS.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <nav aria-label="Aprender">
+      <p class="site-footer__title">Aprender</p>
+      <ul>
+        <li><a href="/guias/">Guías prácticas</a></li>
+        <li><a href="/metodologia-y-fuentes/">Metodología y fuentes</a></li>
+        <li><a href="/privacidad/">Privacidad</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-8);
+    background: var(--color-forest);
+    color: #e7eee3;
+    padding-block: var(--space-7) var(--space-6);
+  }
+
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 760px) {
+    .site-footer__grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+
+  .site-footer__brand {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: var(--space-2);
+  }
+
+  .site-footer__title {
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: var(--space-2);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: var(--space-1);
+  }
+
+  a {
+    color: #e7eee3;
+    display: inline-flex;
+    min-height: 36px;
+    align-items: center;
+  }
+
+  a:hover {
+    color: #fff;
+  }
+
+  .small {
+    color: #cfdccb;
+    max-width: 48ch;
+  }
+</style>
