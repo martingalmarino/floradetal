@@ -30,18 +30,33 @@ export function validateSiteOrigin(raw) {
 }
 
 /**
+ * SITE_URL wins. On Vercel production builds without SITE_URL, falls back to the project's
+ * production domain (custom domain if assigned, otherwise *.vercel.app).
+ * @param {Record<string, string | undefined>} env
+ * @returns {string | undefined}
+ */
+export function siteUrlFromEnv(env) {
+  if (env.SITE_URL && env.SITE_URL.trim() !== '') return env.SITE_URL;
+  if (env.VERCEL_ENV === 'production' && env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return undefined;
+}
+
+/**
  * Returns the configured origin, or undefined in local development.
  * Throws when a production build is explicitly requested without a valid origin.
  * @param {Record<string, string | undefined>} env
  */
 export function resolveSiteOrigin(env) {
   const requireOrigin = env.PV_REQUIRE_SITE === '1' || env.VERCEL_ENV === 'production';
-  const result = validateSiteOrigin(env.SITE_URL);
+  const raw = siteUrlFromEnv(env);
+  const result = validateSiteOrigin(raw);
   if (result.ok) return result.origin;
   if (requireOrigin) {
     throw new Error(`[flora-de-tal] Build de producción bloqueado: ${result.reason}`);
   }
-  if (env.SITE_URL) {
+  if (raw) {
     console.warn(`[flora-de-tal] SITE_URL ignorado: ${result.reason}`);
   }
   return undefined;

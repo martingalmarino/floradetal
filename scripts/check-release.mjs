@@ -1,7 +1,7 @@
 // Production release gate: refuses to build without a real public origin.
-import { validateSiteOrigin } from './site-origin.mjs';
+import { siteUrlFromEnv, validateSiteOrigin } from './site-origin.mjs';
 
-const result = validateSiteOrigin(process.env.SITE_URL);
+const result = validateSiteOrigin(siteUrlFromEnv(process.env));
 
 if (!result.ok) {
   console.error(`\n✖ Chequeo de release: ${result.reason}`);

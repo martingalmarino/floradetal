@@ -60,7 +60,11 @@ No hay backend: cualquier hosting de archivos estáticos sirve.
 
 1. Configurar la variable de entorno `SITE_URL` con el dominio real.
 2. Comando de build: `npm run build:production`. Directorio de salida: `dist`.
-3. En Vercel, si `VERCEL_ENV=production` y falta `SITE_URL`, el build también falla a propósito.
+
+En Vercel alcanza con importar el repositorio (preset Astro, build `npm run build`). En producción, si no hay
+`SITE_URL`, se usa el dominio de producción del proyecto que informa Vercel (`VERCEL_PROJECT_PRODUCTION_URL`: el
+dominio propio si está asignado, o el `*.vercel.app`). Si no hay ninguno de los dos, el build falla a propósito.
+Los deploys de preview se compilan sin canonical ni sitemap.
 
 El sitio usa barra final en todas las URLs (`/plantas/tomate/`). `dist/404.html` es la página de error.
 
